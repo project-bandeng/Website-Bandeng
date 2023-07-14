@@ -1,7 +1,7 @@
-import First from "../Components/First"
+import Homepage from "../Components/Homepage"
 
 const Home = () => {
-return <First/>
+return <Homepage/>
 
 }
 export default Home

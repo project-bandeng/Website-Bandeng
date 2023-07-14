@@ -1,7 +1,7 @@
-import Second from "../Components/Second"
+import Aboutpage from "../Components/Aboutpage"
 
 const About = () => {
-return <Second/>
+return <Aboutpage/>
 
 }
 export default About

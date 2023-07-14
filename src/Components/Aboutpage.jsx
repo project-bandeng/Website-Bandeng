@@ -1,4 +1,4 @@
-const Second = () => {
+const Aboutpage = () => {
     return (
         <>
         <h3>ABOUT PAGES</h3>
@@ -6,4 +6,4 @@ const Second = () => {
     )
     
     }
-    export default Second
+    export default Aboutpage
