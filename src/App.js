@@ -28,7 +28,7 @@ const App = () => {
   return (
     <Router>
       <div className="container-fluid">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between px-5">
       <img src={Logo} alt="Logo" width="200px" className="" />
           <button
             className="navbar-toggler"
@@ -42,7 +42,7 @@ const App = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav me-5 gap-4">
               <li className="nav-item">
                 <Link to="/" className="nav-link">Home</Link>
               </li>
@@ -59,8 +59,8 @@ const App = () => {
                 <Link to="/contact" className="nav-link">Contact</Link>
               </li>
             </ul>
-            <form className="form-inline ml-auto" onSubmit={handleSearchSubmit}>
-              <div className="ms-5 input-group">
+            <form className="d-flex ms-5" onSubmit={handleSearchSubmit}>
+              <div className="input-group">
                 <input
                   className="form-control me-2"
                   type="search"
