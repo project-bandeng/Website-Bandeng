@@ -3,7 +3,11 @@ import { Link, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import About from './Pages/About';
 import Home from './Pages/Home';
+import Product from './Pages/Product';
+import News from './Pages/News';
+import Contact from './Pages/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap';
 import Logo from './Image/Logo.png';
 
 
@@ -23,15 +27,14 @@ const App = () => {
 
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <img src={Logo} alt="Logo" width="200px" className="d-inline-block align-top" />
-        <div className="container">
-          <Link to="/" className="navbar-brand">Home</Link>
+      <div className="container-fluid">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+      <img src={Logo} alt="Logo" width="200px" className="" />
           <button
             className="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
@@ -41,13 +44,16 @@ const App = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
+                <Link to="/" className="nav-link">Home</Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/about" className="nav-link">About</Link>
               </li>
               <li className="nav-item">
-                <Link to="/contact" className="nav-link">Product</Link>
+                <Link to="/product" className="nav-link">Product</Link>
               </li>
               <li className="nav-item">
-                <Link to="/contact" className="nav-link">News</Link>
+                <Link to="/news" className="nav-link">News</Link>
               </li>
               <li className="nav-item">
                 <Link to="/contact" className="nav-link">Contact</Link>
@@ -69,12 +75,15 @@ const App = () => {
               </div>
             </form>
           </div>
-        </div>
       </nav>
+        </div>
       <div className="container mt-5">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       </div>
     </Router>
