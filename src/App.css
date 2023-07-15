@@ -1,14 +1,77 @@
 // Styling Navbar
+.container-fluid {
+  --bs-gutter-x: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 .nav-item {
-  font-size: 20px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
+  font-size: 20px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: bold !important;
 }
 .nav-link:hover {
   color: #0F75BD !important;
 }
 .navbar-collapse {
   flex-grow: 0 !important;
+}
+.carousel-item::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(46, 46, 46, 0.4);
+}
+.heading1 {
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2.3rem;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif !important;
+  top: 15%;
+}
+.heading2 {
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif !important;
+  top: 22%;
+}
+.content {
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.0rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif !important;
+  top: 28%;
+}
+.button1 {
+  font-size: 1.0rem !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  padding: 10px 30px !important;
+  top: 75%;
+}
+.heading3 {
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2.3rem;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif !important;
+  top: 40%;
+}
+.heading4 {
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif !important;
+  top: 48%;
+}
+.content1 {
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.0rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif !important;
+  top: 55%;
 }
 .App {
   text-align: center;

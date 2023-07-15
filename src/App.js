@@ -28,7 +28,7 @@ const App = () => {
   return (
     <Router>
       <div className="container-fluid">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between px-5">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between px-5 fixed-top">
       <img src={Logo} alt="Logo" width="200px" className="" />
           <button
             className="navbar-toggler"
@@ -70,14 +70,13 @@ const App = () => {
                   onChange={handleSearchChange}
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-outline-danger" type="submit">Cari</button>
+                  <button className="btn btn-primary" type="submit">Cari</button>
                 </div>
               </div>
             </form>
           </div>
       </nav>
         </div>
-      <div className="container mt-5">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
@@ -85,7 +84,6 @@ const App = () => {
         <Route path="/news" element={<News />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      </div>
     </Router>
   )
 }
