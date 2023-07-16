@@ -29,7 +29,7 @@ const App = () => {
     <Router>
       <div className="container-fluid">
       <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between px-5 fixed-top">
-      <img src={Logo} alt="Logo" width="200px" className="" />
+      <img src={Logo} alt="Logo" width="200px" className="img-fluid" />
           <button
             className="navbar-toggler"
             type="button"
@@ -41,8 +41,8 @@ const App = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-5 gap-4">
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul className="navbar-nav gap-2">
               <li className="nav-item">
                 <Link to="/" className="nav-link">Home</Link>
               </li>
@@ -59,7 +59,9 @@ const App = () => {
                 <Link to="/contact" className="nav-link">Contact</Link>
               </li>
             </ul>
-            <form className="d-flex ms-5" onSubmit={handleSearchSubmit}>
+          </div>
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <form className="d-flex ms-5 ms-md-0" onSubmit={handleSearchSubmit}>
               <div className="input-group">
                 <input
                   className="form-control me-2"

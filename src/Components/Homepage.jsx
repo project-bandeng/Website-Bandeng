@@ -13,25 +13,25 @@ const Homepage = () => {
       <div id="carouselExampleSlidesOnly" className="carousel slide carousel-fade" data-bs-ride="carousel">
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src={Carousel1} className="d-block w-100" alt="img1"/>
+            <img src={Carousel1} className="img-fluid" alt="img1"/>
             <h1 className='text-white position-absolute start-50 translate-middle-x heading1'>SELAMAT DATANG DI <span style={{color: '#0497FF'}}>D'BANDENG</span></h1>
             <h3 className='text-white position-absolute start-50 translate-middle-x heading2'>DIGITALISASI UMKM BANDENG</h3>
             <p className='text-white position-absolute start-50 translate-middle-x content'>Solusi Tepat Untuk Informasi Olahan Ikan Bandeng</p>
-            <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>MULAI</button></Link>
+            <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>SELENGKAPNYA</button></Link>
           </div>
           <div className="carousel-item">
-            <img src={Carousel2} className="d-block w-100" alt="img2"/>
+            <img src={Carousel2} className="img-fluid" alt="img2"/>
             <h1 className='text-white position-absolute start-50 translate-middle-x heading3'>MEMPERLUAS JARINGAN PASAR</h1>
             <h3 className='text-white position-absolute start-50 translate-middle-x heading4'>PENINGKATAN EKONOMI UMKM</h3>
             <p className='text-white position-absolute start-50 translate-middle-x content1'>Memberikan Kemudahan Dalam Proses Berbelanja</p>
-            <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>MULAI</button></Link>
+            <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>SELENGKAPNYA</button></Link>
           </div>
           <div className="carousel-item">
-            <img src={Carousel3} className="d-block w-100" alt="img3"/>
-            <h1 className='text-white position-absolute start-50 translate-middle-x heading1'>SELAMAT DATANG DI </h1>
-            <h3 className='text-white position-absolute start-50 translate-middle-x heading2'>DIGITALISASI UMKM BANDENG</h3>
-            <p className='text-white position-absolute start-50 translate-middle-x content'>Solusi Tepat Untuk Informasi Olahan Ikan Bandeng</p>
-            <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>MULAI</button></Link>
+            <img src={Carousel3} className="img-fluid" alt="img3"/>
+            <h1 className='text-white position-absolute start-50 translate-middle-x heading1'>PELAYANAN YANG CEPAT</h1>
+            <h3 className='text-white position-absolute start-50 translate-middle-x heading2'>FLEKSIBILITAS DALAM BERBELANJA</h3>
+            <p className='text-white position-absolute start-50 translate-middle-x content'>Pengalaman Berbelanja Yang Lebih Tepat</p>
+            <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>SELENGKAPNYA</button></Link>
           </div>
         </div>
       </div>

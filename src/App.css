@@ -1,4 +1,4 @@
-// Styling Navbar
+// Styling Navbar App.js
 .container-fluid {
   --bs-gutter-x: 0 !important;
   padding-left: 0 !important;
@@ -12,9 +12,6 @@
 .nav-link:hover {
   color: #0F75BD !important;
 }
-.navbar-collapse {
-  flex-grow: 0 !important;
-}
 .carousel-item::before {
   position: absolute;
   content: '';
@@ -26,14 +23,14 @@
 }
 .heading1 {
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2.3rem;
+  font-size: 2.0rem;
   font-weight: bold;
   font-family: 'Poppins', sans-serif !important;
   top: 15%;
 }
 .heading2 {
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif !important;
   top: 22%;
@@ -54,14 +51,14 @@
 }
 .heading3 {
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2.3rem;
+  font-size: 2.0rem;
   font-weight: bold;
   font-family: 'Poppins', sans-serif !important;
   top: 40%;
 }
 .heading4 {
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif !important;
   top: 48%;
@@ -72,6 +69,80 @@
   font-weight: 600;
   font-family: 'Poppins', sans-serif !important;
   top: 55%;
+}
+@media (max-width: 1100px) {
+  .nav-item {
+    font-size: 16px !important;
+  }
+  .heading1, .heading3 {
+    font-size: 1.7rem;
+  }
+  .heading2, .heading4 {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 935px) {
+  .heading1, .heading3 {
+    font-size: 1.3rem;
+  }
+  .heading2, .heading4 {
+    font-size: 1.0rem;
+  }
+  .content, .content1 {
+    font-size: 0.8rem;
+  }
+  .button1 {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+  }
+}
+@media (max-width: 725px) {
+  .heading1, .heading3 {
+    font-size: 1.0rem;
+  }
+  .heading1 {
+    top: 20%;
+  }
+  .heading2, .heading4 {
+    font-size: 0.8rem;
+  }
+  .heading2 {
+    top: 27%;
+  }
+  .content, .content1 {
+    font-size: 0.5rem;
+  }
+  .content {
+    top: 34%;
+  }
+  .button1 {
+    font-size: 0.6rem !important;
+    font-weight: 600 !important;
+    padding: 10px 15px !important;
+  }
+}
+@media (max-width: 560px) {
+  .heading1, .heading3 {
+    font-size: 0.8rem;
+  }
+  .heading1 {
+    top: 23%;
+  }
+  .heading2, .heading4 {
+    font-size: 0.6rem;
+  }
+  .heading2 {
+    top: 29%;
+  }
+  .content, .content1 {
+    font-size: 0.5rem;
+  }
+  .button1 {
+    font-size: 0.5rem !important;
+    font-weight: 600 !important;
+    padding: 10px !important;
+  }
 }
 .App {
   text-align: center;
