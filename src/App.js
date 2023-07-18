@@ -30,6 +30,8 @@ const App = () => {
       <div className="container-fluid">
       <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between px-5 fixed-top shadow">
       <img src={Logo} alt="Logo" width="200px" className="img-fluid" />
+      <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between px-5 fixed-top">
+      <img src={Logo} alt="Logo" width="200px" className="img-fluid Logo" />
           <button
             className="navbar-toggler"
             type="button"
