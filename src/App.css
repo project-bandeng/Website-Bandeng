@@ -1,4 +1,10 @@
-// Styling Navbar App.js
+.login-container {
+  --bs-gutter-x: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-image: url('./Image/bg-image.png');
+}
+
 .container-fluid {
   --bs-gutter-x: 0 !important;
   padding-left: 0 !important;
