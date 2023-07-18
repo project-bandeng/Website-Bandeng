@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import About1 from '../Image/about-image1.png';
 import About2 from '../Image/about-image2.png';
 import About3 from '../Image/about-image3.png';
+import LogoMitra1 from '../Image/juwana-logo.png';
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
@@ -40,6 +41,7 @@ const Homepage = () => {
     }
     return (
       <div className="container-fluid" style={{paddingLeft: 0, paddingRight: 0}}>
+      {/* carousel Section */}
       <div className="row">
       <div className="col">
       <Carousel>
@@ -49,7 +51,7 @@ const Homepage = () => {
           src={Carousel1}
           alt="Slide 1"
         />
-        <h1 className='text-white position-absolute start-50 translate-middle-x heading1'>SELAMAT DATANG DI <span style={{color: '#0497FF'}}>D'BANDENG</span></h1>
+        <h1 className='text-white position-absolute start-50 translate-middle-x heading1'>SELAMAT DATANG DI <span style={{color: '#5CBBFF'}}>D'BANDENG</span></h1>
         <h3 className='text-white position-absolute start-50 translate-middle-x heading2'>DIGITALISASI UMKM BANDENG</h3>
         <p className='text-white position-absolute start-50 translate-middle-x content'>Solusi Tepat Untuk Informasi Olahan Ikan Bandeng</p>
         <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>SELENGKAPNYA</button></Link>
@@ -77,8 +79,9 @@ const Homepage = () => {
         <Link to="/about"><button type="button" className='btn position-absolute start-50 translate-middle-x btn-primary button1'>SELENGKAPNYA</button></Link>
       </Carousel.Item>
       </Carousel>
+      {/* mitra Section */}
       <div className="container-fluid pt-4" style={{ backgroundColor: '#47545F' }}>
-        <h1 className='text-white start-50 heading1 text-center'>MITRA <span style={{color: '#0497FF'}}>D'BANDENG</span></h1>
+        <h1 className='text-white start-50 heading1 text-center'>MITRA <span style={{color: '#5CBBFF'}}>D'BANDENG</span></h1>
         <p className='text-white h6 mb-4 text-center'>Toko yang tergabung dalam D’Bandeng</p>
         <div className="row justify-content-center">
         <div className='col-md-9'>
@@ -96,16 +99,17 @@ const Homepage = () => {
         </Swiper>
         </div>
         </div>
-        <div className="row justify-content-center mt-5">
+        {/* about Section */}
+        <div className="row justify-content-center mt-5 pb-5">
           <div className="col-md-4">
-            <h3 className='text-white start-50 heading3'>ABOUT <span style={{color: '#0497FF'}}>D'BANDENG</span></h3>
+            <h3 className='text-white start-50 heading3'>ABOUT <span style={{color: '#5CBBFF'}}>D'BANDENG</span></h3>
             <p className='text-white' style={{fontSize: '1.3rem'}}>Kami menyediakan berbagai macam jenis olahan ikan bandeng kepada pelanggan kami dengan menjaga kualitas dan kelezatannya</p>
             <Link to="/about"><button type="button" className='btn btn-primary button1'>SELENGKAPNYA</button></Link>
           </div>
           <div className="col-md-7 d-flex align-items-center">
-            <div className="p-3 bg-secondary rounded-3 d-flex gap-5">
-            <div className='rounded-3 card p-2'>
-              <div className="" style={{width: '180px'}}>
+            <div className="p-3 rounded-3 d-flex gap-5 container-about-card">
+            <div className='rounded-3 card p-2 container-card'>
+              <div className="container-content-card" style={{width: '175px'}}>
                 <img src={About1} alt="img-vision" className='about-img'/>
                 <h3 style={{color: '#6B5CCC'}}>Vision</h3>
                 <div className="about-card-content">
@@ -113,24 +117,62 @@ const Homepage = () => {
                 </div>
               </div>
             </div>
-            <div className='rounded-3 card p-2'>
-              <div className="" style={{width: '180px'}}>
+            <div className='rounded-3 card p-2 container-card1'>
+              <div className="container-content-card" style={{width: '180px'}}>
                 <img src={About2} alt="img-vision" className='about-img'/>
                 <h3 style={{color: '#6B5CCC'}}>Mision</h3>
-                <div className="about-card-content">
+                <div className="about-card-content1">
                   <p>Membantu masyarakat dalam memasarkan dan mempromosikan produk</p>
                 </div>
               </div>
             </div>
-            <div className='rounded-3 card p-2'>
-              <div className="" style={{width: '180px'}}>
+            <div className='rounded-3 card p-2 container-card2'>
+              <div className="container-content-card" style={{width: '175px'}}>
                 <img src={About3} alt="img-vision" className='about-img'/>
                 <h3 style={{color: '#6B5CCC'}}>Objective</h3>
-                <div className="about-card-content">
+                <div className="about-card-content2">
                   <p>Memperluas jangkauan pasar dan jaringan pasar</p>
                 </div>
               </div>
             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* product Section */}
+      <div className="container-fluid pt-4" style={{backgroundColor: '#DDE6ED'}}>
+        <h1 className='product-title text-center'>Products</h1>
+        <div className="container-card-product row mt-5">
+          <div className="col-md-3 d-flex flex-column gap-3">
+            <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3'/>
+            </div>
+            <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+            </div>
+          </div>
+          <div className="col-md-3 d-flex flex-column gap-3">
+          <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+            </div>
+            <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+            </div>
+          </div>
+          <div className="col-md-3 d-flex flex-column gap-3">
+            <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3'/>
+            </div>
+            <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+            </div>
+          </div>
+          <div className="col-md-3 d-flex flex-column gap-3">
+            <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3'/>
+            </div>
+            <div className="card rounded-3">
+              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
             </div>
           </div>
         </div>
