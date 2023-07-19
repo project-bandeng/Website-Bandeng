@@ -116,12 +116,12 @@
 .container-card2:hover .about-card-content2 p {
   opacity: 1;
 }
-.product-title {
+.product-title, .news-title {
   font-size: 40px;
   font-weight: 600;
   position: relative;
 }
-.product-title::after {
+.product-title::after, .news-title::after {
   content: '';
   position: absolute;
   left: 45%;
@@ -129,6 +129,10 @@
   width: 10%; /* Panjang garis sama dengan teks */
   height: 4px; /* Lebar garis */
   background-color: #007bff; /* Warna garis bawah */
+}
+.product-price {
+  font-weight: 600;
+  font-size: 20px;
 }
 @media (max-width: 1100px) {
   .nav-item {

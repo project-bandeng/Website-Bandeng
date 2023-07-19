@@ -12,6 +12,7 @@ import About1 from '../Image/about-image1.png';
 import About2 from '../Image/about-image2.png';
 import About3 from '../Image/about-image3.png';
 import LogoMitra1 from '../Image/juwana-logo.png';
+import Cart from '../Image/Cart.png';
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
@@ -33,7 +34,7 @@ const Homepage = () => {
             <Card.Body>
             <img className="d-block w-100 mb-3 rounded-3" src={Produk} alt=""/>
               <Card.Title className='mb-3'>Bandeng Juwana</Card.Title>
-              <Button variant="primary">Lihat Selengkapnya</Button>
+              <Link to=''><Button variant="primary">Lihat Selengkapnya</Button></Link>
             </Card.Body>
           </Card>
         </div>
@@ -142,39 +143,89 @@ const Homepage = () => {
       {/* product Section */}
       <div className="container-fluid pt-4" style={{backgroundColor: '#DDE6ED'}}>
         <h1 className='product-title text-center'>Products</h1>
-        <div className="container-card-product row mt-5">
+        <div className="container-card-product row mt-5 mx-5">
           <div className="col-md-3 d-flex flex-column gap-3">
-            <div className="card rounded-3">
+            <div className="card rounded-3" style={{height: '270px'}}>
               <img src={LogoMitra1} alt="logo-mitra" className='rounded-3'/>
             </div>
-            <div className="card rounded-3">
+            <div className="card rounded-3" style={{height: '270px'}}>
               <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
             </div>
           </div>
           <div className="col-md-3 d-flex flex-column gap-3">
-          <div className="card rounded-3">
-              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+          <div className="card rounded-3" style={{height: '270px'}}>
+              <img src={Produk} alt="logo-mitra" className='rounded-3' />
+              <h3 className='text-center fw-bold' style={{color: '#0F75BD'}}>Bandeng Presto</h3>
+              <div className='d-flex justify-content-between align-items-center px-4'>
+                <p className='product-price mb-0'>Rp. 15.000</p>
+                <div className='rounded-circle bg-primary p-2'>
+                  <img src={Cart} alt="keranjang" width='25px'/>
+                </div>
+              </div>
             </div>
-            <div className="card rounded-3">
-              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+            <div className="card rounded-3" style={{height: '270px'}}>
+              <img src={Produk} alt="logo-mitra" className='rounded-3' />
+              <h3 className='text-center fw-bold' style={{color: '#0F75BD'}}>Bandeng Presto</h3>
+              <div className='d-flex justify-content-between align-items-center px-4'>
+                <p className='product-price mb-0'>Rp. 15.000</p>
+                <div className='rounded-circle bg-primary p-2'>
+                  <img src={Cart} alt="keranjang" width='25px'/>
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-md-3 d-flex flex-column gap-3">
-            <div className="card rounded-3">
-              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3'/>
+            <div className="card rounded-3" style={{height: '270px'}}>
+              <img src={Produk} alt="logo-mitra" className='rounded-3'/>
+              <h3 className='text-center fw-bold' style={{color: '#0F75BD'}}>Bandeng Presto</h3>
+              <div className='d-flex justify-content-between align-items-center px-4'>
+                <p className='product-price mb-0'>Rp. 15.000</p>
+                <div className='rounded-circle bg-primary p-2'>
+                  <img src={Cart} alt="keranjang" width='25px'/>
+                </div>
+              </div>
             </div>
-            <div className="card rounded-3">
-              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+            <div className="card rounded-3" style={{height: '270px'}}>
+              <img src={Produk} alt="logo-mitra" className='rounded-3' />
+              <h3 className='text-center fw-bold' style={{color: '#0F75BD'}}>Bandeng Presto</h3>
+              <div className='d-flex justify-content-between align-items-center px-4'>
+                <p className='product-price mb-0'>Rp. 15.000</p>
+                <div className='rounded-circle bg-primary p-2'>
+                  <img src={Cart} alt="keranjang" width='25px'/>
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-md-3 d-flex flex-column gap-3">
-            <div className="card rounded-3">
-              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3'/>
+            <div className="card rounded-3" style={{height: '270px'}}>
+              <img src={Produk} alt="logo-mitra" className='rounded-3'/>
+              <h3 className='text-center fw-bold' style={{color: '#0F75BD'}}>Bandeng Presto</h3>
+              <div className='d-flex justify-content-between align-items-center px-4'>
+                <p className='product-price mb-0'>Rp. 15.000</p>
+                <div className='rounded-circle bg-primary p-2'>
+                  <img src={Cart} alt="keranjang" width='25px'/>
+                </div>
+              </div>
             </div>
-            <div className="card rounded-3">
-              <img src={LogoMitra1} alt="logo-mitra" className='rounded-3' />
+            <div className="card rounded-3" style={{height: '270px'}}>
+              <img src={Produk} alt="logo-mitra" className='rounded-3' />
+              <h3 className='text-center fw-bold' style={{color: '#0F75BD'}}>Bandeng Presto</h3>
+              <div className='d-flex justify-content-between align-items-center px-4'>
+                <p className='product-price mb-0'>Rp. 15.000</p>
+                <div className='rounded-circle bg-primary p-2'>
+                  <img src={Cart} alt="keranjang" width='25px'/>
+                </div>
+              </div>
             </div>
           </div>
+          <div className="col-2 mx-auto mt-5">
+            <Link to=''><Button type="button">Lihat Selengkapnya</Button></Link>
+          </div>
+        </div>
+        <h1 className='news-title text-center mt-4'>NEWS</h1>
+        <p className='text-center'>Berita terbaru terkait informasi Bandeng pada wilayah Krobokan Kota Semarang</p>
+        <div className="news-container row">
+
         </div>
       </div>
       </div>
