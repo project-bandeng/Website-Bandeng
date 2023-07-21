@@ -9,6 +9,7 @@ import Contact from './Pages/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import Login from './Pages/Login';
+import Register from './Pages/Register';
 import Navbar from './Pages/Navbar';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
     <Router>
       <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       </Routes>
       <Navbar />
       <Routes>
