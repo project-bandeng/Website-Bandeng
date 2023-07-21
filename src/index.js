@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import Register from './Pages/Register';
 
-const router = createBrowserRouter([
+/*const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -23,13 +23,13 @@ const router = createBrowserRouter([
     path: "register",
     element: <Register />,
   },
-]);
+]);*/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <RouterProvider router={router} />
+    {<App />}
+
   </React.StrictMode>
 );
 
