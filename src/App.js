@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -10,19 +11,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import Navbar from './Pages/Navbar';
+import MainNavbar from './Components/MainNavbar';
 
 const App = () => {
-
-
   return (
     <Router>
+      <MainNavbar />
       <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      </Routes>
-      <Navbar />
-      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="/product" element={<Product />} />
@@ -30,7 +27,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
-  )
-}
+  );
+};
 
 export default App;

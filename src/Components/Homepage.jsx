@@ -3,6 +3,10 @@ import Carousel1 from '../Image/carousel1.png';
 import Carousel2 from '../Image/carousel2.png';
 import Carousel3 from '../Image/carousel3.png';
 import Produk from '../Image/Produk.jpg'
+import news1 from '../Image/news1.JPG'
+import news2 from '../Image/news2.JPG'
+import news3 from '../Image/news3.JPG'
+import news4 from '../Image/news4.JPG'
 import { Carousel, Card, Button } from 'react-bootstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,6 +16,7 @@ import About1 from '../Image/about-image1.png';
 import About2 from '../Image/about-image2.png';
 import About3 from '../Image/about-image3.png';
 import LogoMitra1 from '../Image/juwana-logo.png';
+import logo2 from '../Image/logo2.png'
 import Cart from '../Image/Cart.png';
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
@@ -225,8 +230,88 @@ const Homepage = () => {
         <h1 className='news-title text-center mt-4'>NEWS</h1>
         <p className='text-center'>Berita terbaru terkait informasi Bandeng pada wilayah Krobokan Kota Semarang</p>
         <div className="news-container row">
-
         </div>
+      {/* News Section */}
+      <div className="container-fluid pt-4" style={{backgroundColor: '#DDE6ED'}}>
+        <div className="container-card-product row mt-1 mx-5 justify-content-center">
+          <div className="col-md-3 d-flex flex-column gap-3">
+            <div className="card rounded-3">
+              <img src={news4} alt="logo-mitra" className='rounded-3' />
+            </div>
+            <div className="card rounded-3">
+              <img src={news3} alt="logo-mitra" className='rounded-3' />
+            </div>
+          </div>
+          <div className="col-md-3 d-flex flex-column gap-3">
+          <div className="card rounded-3">
+              <img src={news1} alt="logo-mitra" className='rounded-3' />
+            </div>
+            <div className="card rounded-3">
+              <img src={news2} alt="logo-mitra" className='rounded-3' />
+            </div>
+          </div>
+          <div className="col-md-3 d-flex flex-column gap-3">
+          <div className="card rounded-3">
+              <img src={news3} alt="logo-mitra" className='rounded-3' />
+            </div>
+            <div className="card rounded-3">
+              <img src={news4} alt="logo-mitra" className='rounded-3' />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container-fluid pt-4" style={{backgroundColor: '#DDE6ED'}}>
+        <h1 className='info-title text-center'>Kenapa Harus D'Bandeng?</h1>
+          <div className="container pt-4 ps-lg-5">
+            <div className="ms-5 ps-5 d-flex gap-5">
+              <div className='ms-5 d-flex me-5'>
+              <div className="circle ">
+              </div>
+              <h3 className='text'><span>Fleksibel</span></h3>
+              </div>  
+              <div className='ms-5 d-flex me-5 ps-5'>
+              <div className="circle ">
+              </div>
+              <h3 className='text'><span>Fleksibel</span></h3>
+              </div>
+              <div className='ms-5 d-flex ps-5'>
+              <div className="circle ">
+              </div>
+              <h3 className='text'><span>Fleksibel</span></h3>
+              </div>
+            </div>
+        </div>
+        </div>
+        <div className="container pt-5 pb-5" style={{backgroundColor: '#DDE6ED'}}>
+        <h1 className='news-title text-center'>Contact</h1>
+          <div className="ms-5 container-fluid pt-4 justify-content-center">
+            <div class="mb-3 row">
+            <label for="inputPassword" class="col-auto"><h3 className=''><span>E-Mail:</span></h3></label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control shadow" id="inputPassword"></input>
+              </div>
+            </div>
+            <div class="mb-3 row">
+            <label for="inputPassword" class="col-auto"><h3 className=''><span>Nama :</span></h3></label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control shadow" id="inputPassword"></input>
+              </div>
+            </div>
+            <div class="col">
+            <label for="inputPassword" class="col-auto"><h3><span>Pesan :</span></h3></label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control shadow" id="inputPassword" style={{width:'110%', height:'150px'}}></input>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div className="container-fluid pt-5 pb-5" style={{backgroundColor: '#0F75BD'}}>
+      <footer>
+        <div className='ms-5'>
+          <img src={logo2} />
+          </div>
+      </footer>
+      </div>
       </div>
       </div>
       </div>
