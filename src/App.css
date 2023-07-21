@@ -5,7 +5,7 @@
   height: 100vh;
   background-image: url('./Image/bg-image.png');
 }
-.form-email::placeholder, .form-password::placeholder {
+.form-register::placeholder, .form-login::placeholder {
   color: #7E7D7A;
   font-weight: 600;
 }
