@@ -30,7 +30,7 @@ const Loginpage = () => {
                 placeholder="Alamat Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="rounded-pill mb-4 p-2 form-email"
+                className="rounded-pill mb-4 p-2 form-login"
               />
             </Form.Group>
 
@@ -40,7 +40,7 @@ const Loginpage = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="rounded-pill mb-2 p-2 form-password"
+                className="rounded-pill mb-2 p-2 form-login"
               />
             </Form.Group>
             <div className="d-flex justify-content-end mb-3 mx-2">
