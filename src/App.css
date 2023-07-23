@@ -55,6 +55,12 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+.container-news {
+  --bs-gutter-x: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 80px;
+}
 .nav-item {
   font-size: 20px !important;
   font-family: 'Poppins', sans-serif !important;
