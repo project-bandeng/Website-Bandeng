@@ -1,50 +1,60 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Logo from '../Image/LogoLogin.png';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import "../App.css";
+import axios from 'axios';
 
 const Registerpage = () => {
   const [username, setUsername] = useState('');
   const [alamat, setAlamat] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
+  const navigate = useNavigate();
 
-  async function handleRegister() {
-    hello();
+  function handleRegister() {
     // You can handle the login logic here
-    let dataRegister = {'namaMitra':username, 'alamatMitra':alamat, email, password};
-    console.log(dataRegister);
-    let result = await fetch("http://localhost:8000/api/register", {
-      method: "POST",
-      body: JSON.stringify(dataRegister),
-      Headers: {
-        "content-type" : 'application/json',
-        Accept : 'application/json',
-      }
+    let dataRegister = {'namaMitra':username, 'alamatMitra':alamat, 'tglLahir':convertDate(selectedDate) , email, password};
+    // console.log(dataRegister);
+    // let result = await fetch("http://localhost:8000/api/register", {
+    //   method: "POST",
+    //   body: JSON.stringify(dataRegister),
+    //   Headers: {
+    //     "content-type" : 'application/json',
+    //     Accept : 'application/json',
+    //   }
+    // })
+    // result = await result.json();
+    // console.log("Result", result);
+    axios.post('http://localhost:8000/api/register', dataRegister)
+    .then(function (response) {
+      localStorage.setItem('mitra-info', JSON.stringify(dataRegister));
+      navigate("/login");
+      console.log(response);
     })
-    result = await result.json();
-    console.log("Result", result);
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
-  async function hello() {
-    let result = await fetch("http://localhost:8000/api/generatecrsf", {
-      Headers: {
-        "content-type" : 'application/json',
-        Accept : 'application/json',
-      }
-    })
-    result = await result.json();
-    console.log("Result", result);
-  }
-
-  const [selectedDate, setSelectedDate] = useState(null);
+  function convertDate(date){
+    let yy = date.getFullYear()
+    let mm = date.getMonth() + 1; // Months start at 0!
+    let dd = date.getDate();
+    
+    mm = mm < 10 ? ("0" + mm) : mm; 
+    
+    return yy + "-" + mm + "-" + dd}
 
   const handleDateChange = (date) => {
+    console.log(date);
     setSelectedDate(date);
   };
+
 
   return (
     <div className="login-container container-fluid">
@@ -58,10 +68,11 @@ const Registerpage = () => {
           <Form.Group controlId="formNama">
               <Form.Control
                 type="text"
-                placeholder="Nama Lengkap"
+                placeholder="Nama Mitra"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="rounded-pill mb-4 p-2 form-register"
+                required
               />
             </Form.Group>
             <Form.Group controlId="formTglLahir">
@@ -74,6 +85,7 @@ const Registerpage = () => {
             yearDropdownItemNumber={20}
             scrollableYearDropdown
             dateFormat="dd/MM/yyyy"
+            required
             />
             </Form.Group>
             <Form.Group controlId="formAlamat">
@@ -83,6 +95,7 @@ const Registerpage = () => {
                 value={alamat}
                 onChange={(e) => setAlamat(e.target.value)}
                 className="rounded-pill mb-4 p-2 form-register"
+                required
               />
             </Form.Group>
             <Form.Group controlId="formEmail">
@@ -92,6 +105,7 @@ const Registerpage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="rounded-pill mb-4 p-2 form-register"
+                required
               />
             </Form.Group>
 
@@ -102,6 +116,7 @@ const Registerpage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="rounded-pill mb-2 p-2 form-register"
+                required
               />
             </Form.Group>
             <div className='d-flex justify-content-center mt-3'>
