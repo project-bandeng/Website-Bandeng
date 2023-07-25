@@ -14,7 +14,6 @@ const Registerpage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
-  const navigate = useNavigate();
 
   function handleRegister() {
     // You can handle the login logic here
@@ -30,10 +29,9 @@ const Registerpage = () => {
     // })
     // result = await result.json();
     // console.log("Result", result);
-    axios.post('http://localhost:8000/api/register', dataRegister)
+    axios.post('http://localhost:8000/api/v1/register', dataRegister)
     .then(function (response) {
       localStorage.setItem('mitra-info', JSON.stringify(dataRegister));
-      navigate("/login");
       console.log(response);
     })
     .catch(function (error) {

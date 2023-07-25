@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Logo from '../Image/LogoLogin.png'
+import Logo from '../Image/LogoLogin.png';
+import axios from 'axios';
 
 
 const Loginpage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // You can handle the login logic here
-    console.log('Username:', email);
-    console.log('Password:', password);
+  function handleLogin() {
+    let dataLogin = {email, password};
+
+    axios.post('http://localhost:8000/api/login', dataLogin)
+    .then(function (response) {
+      localStorage.setItem('Login-info', JSON.stringify(dataLogin));
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
   return (
