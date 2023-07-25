@@ -12,6 +12,7 @@ import 'bootstrap/dist/js/bootstrap';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import MainNavbar from './Components/MainNavbar';
+import Deskripsi from './Pages/Deskripsi';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/news" element={<News />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/Deskripsi" element={<Deskripsi />} />
       </Routes>
     </Router>
   );
