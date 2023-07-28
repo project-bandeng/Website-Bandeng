@@ -13,6 +13,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import MainNavbar from './Components/MainNavbar';
 import Deskripsi from './Pages/Deskripsi';
+import Fpass from './Pages/Fpass';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/news" element={<News />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/Deskripsi" element={<Deskripsi />} />
+        <Route path="/login/forgot-password" element={<Fpass />} />
       </Routes>
     </Router>
   );

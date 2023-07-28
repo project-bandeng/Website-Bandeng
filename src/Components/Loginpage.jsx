@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Image/LogoLogin.png';
 import axios from 'axios';
+import Forgotpasspage from './Forgotpass';
 
 
 const Loginpage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   function handleLogin() {
     let dataLogin = {email, password};
 
-    axios.post('http://localhost:8000/api/login', dataLogin)
+    axios.post('http://localhost:8000/api/v2/login', dataLogin)
     .then(function (response) {
       localStorage.setItem('Login-info', JSON.stringify(dataLogin));
+      // navigate("/");
       console.log(response);
     })
     .catch(function (error) {
@@ -51,11 +54,11 @@ const Loginpage = () => {
               />
             </Form.Group>
             <div className="d-flex justify-content-end mb-3 mx-2">
-            <Link className='text-white'>Lupa Password?</Link>
+            <Link to="" className='text-white'>Lupa Password?</Link>
             </div>
             <div className='d-flex justify-content-center'>
               <Link>
-                <Button variant="light" type="submit" className='rounded-pill fw-bold text-primary' style={{width: '120px'}}>
+                <Button variant="light" type="submit" className='rounded-pill fw-bold text-primary' style={{width: '120px'}} onClick={handleLogin}>
                 Login
                 </Button>
               </Link>
