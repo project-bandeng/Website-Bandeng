@@ -46,7 +46,7 @@ const Newspage = () => {
                 </a>
               </div>
             </div>
-          </div>
+            </div>
           <div className="pt-5 pb-5" style={{backgroundColor: '#0F75BD'}}>
             <div className='ms-5'>
             <img src={logo2} />

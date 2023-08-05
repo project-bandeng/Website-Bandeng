@@ -12,11 +12,11 @@ const Registerpage = () => {
   const [alamat, setAlamat] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [notelp, setNotelp] = useState('');
 
   function handleRegister() {
     // You can handle the login logic here
-    let dataRegister = {'namaMitra':username, 'alamatMitra':alamat, 'tglLahir':convertDate(selectedDate) , email, password};
+    let dataRegister = {'namaMitra':username, 'alamatMitra':alamat, 'notelp':notelp , email, password};
     // console.log(dataRegister);
     // let result = await fetch("http://localhost:8000/api/register", {
     //   method: "POST",
@@ -38,19 +38,19 @@ const Registerpage = () => {
     });
   };
 
-  function convertDate(date){
-    let yy = date.getFullYear()
-    let mm = date.getMonth() + 1; // Months start at 0!
-    let dd = date.getDate();
+  // function convertDate(date){
+  //   let yy = date.getFullYear()
+  //   let mm = date.getMonth() + 1; // Months start at 0!
+  //   let dd = date.getDate();
     
-    mm = mm < 10 ? ("0" + mm) : mm; 
+  //   mm = mm < 10 ? ("0" + mm) : mm; 
     
-    return yy + "-" + mm + "-" + dd}
+  //   return yy + "-" + mm + "-" + dd}
 
-  const handleDateChange = (date) => {
-    console.log(date);
-    setSelectedDate(date);
-  };
+  // const handleDateChange = (date) => {
+  //   console.log(date);
+  //   setSelectedDate(date);
+  // };
 
 
   return (
@@ -71,7 +71,7 @@ const Registerpage = () => {
                 className="rounded-pill mb-4 p-2 form-register"
                 required
               />
-            </Form.Group>
+            {/* </Form.Group>
             <Form.Group controlId="formTglLahir">
             <DatePicker
             className='rounded-pill mb-4 p-2 form-control form-register'
@@ -83,7 +83,7 @@ const Registerpage = () => {
             scrollableYearDropdown
             dateFormat="dd/MM/yyyy"
             required
-            />
+            /> */}
             </Form.Group>
             <Form.Group controlId="formAlamat">
               <Form.Control
@@ -91,6 +91,16 @@ const Registerpage = () => {
                 placeholder="Alamat Usaha"
                 value={alamat}
                 onChange={(e) => setAlamat(e.target.value)}
+                className="rounded-pill mb-4 p-2 form-register"
+                required
+              />
+              </Form.Group>
+              <Form.Group controlId="NoTelp">
+              <Form.Control
+                type="text"
+                placeholder="No Telepon"
+                value={notelp}
+                onChange={(e) => setNotelp(e.target.value)}
                 className="rounded-pill mb-4 p-2 form-register"
                 required
               />

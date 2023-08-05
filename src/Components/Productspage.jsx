@@ -1,4 +1,3 @@
-
 import React from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,7 +7,7 @@ import Produk from '../Image/Produk.jpg'
    
     const Productpage = ({ id, name, description, price, imageUrl }) => {
         return (
-<div className="container-news" style={{backgroundColor: '#DDE6ED'}}>
+        <div className="container-news" style={{backgroundColor: '#DDE6ED'}}>
         <h1 className='text-center'>Products</h1>
         <div className="container-card-product row mt-3 mx-5 justify-content-center">
           <div className="col-md-3 d-flex flex-column gap-3 pb-5">
