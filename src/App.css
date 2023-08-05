@@ -66,9 +66,15 @@
   font-family: 'Poppins', sans-serif !important;
   font-weight: bold !important;
 }
-.nav-link:hover {
-  color: #0F75BD !important;
+/* Gaya untuk menu yang aktif */
+.nav-item.active {
+  background-color: #FFFFFF;
 }
+
+.active-link {
+  color: #138AE0; /* Warna teks untuk menu yang aktif */
+}
+
 .carousel-item::before {
   position: absolute;
   content: '';

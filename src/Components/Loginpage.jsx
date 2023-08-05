@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Dropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Image/LogoLogin.png';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import Forgotpasspage from './Forgotpass';
 
 
@@ -10,6 +11,9 @@ const Loginpage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  
+  const [error, setError] = useState('');
+
 
   function handleLogin() {
     let dataLogin = {email, password};
@@ -17,12 +21,37 @@ const Loginpage = () => {
     axios.post('http://localhost:8000/api/v2/login', dataLogin)
     .then(function (response) {
       localStorage.setItem('Login-info', JSON.stringify(dataLogin));
-      // navigate("/");
+      navigate("/");
       console.log(response);
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+.catch((error) => {
+        if (error.response.status === 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.response.data.error,
+          });
+        } else if (error.response.status === 401) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.response.data.error,
+          });
+        } else if (error.response.status === 403) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.response.data.error,
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Terjadi Kesalahan Lain.',
+          });
+        }
+      });
+    
   };
 
   return (

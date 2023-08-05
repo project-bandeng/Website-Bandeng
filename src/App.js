@@ -14,6 +14,7 @@ import Register from './Pages/Register';
 import MainNavbar from './Components/MainNavbar';
 import Deskripsi from './Pages/Deskripsi';
 import Fpass from './Pages/Fpass';
+import Profil from './Pages/Profil';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/Deskripsi" element={<Deskripsi />} />
         <Route path="/login/forgot-password" element={<Fpass />} />
+        <Route path="/Profil" element={<Profil />} />
       </Routes>
     </Router>
   );

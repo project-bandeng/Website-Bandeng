@@ -16,7 +16,7 @@ const Registerpage = () => {
 
   function handleRegister() {
     // You can handle the login logic here
-    let dataRegister = {'namaMitra':username, 'alamatMitra':alamat, 'notelp':notelp , email, password};
+    let dataRegister = {'namaMitra':username, 'alamatMitra':alamat, 'no_tlp':notelp , email, password};
     // console.log(dataRegister);
     // let result = await fetch("http://localhost:8000/api/register", {
     //   method: "POST",
@@ -33,8 +33,12 @@ const Registerpage = () => {
       localStorage.setItem('mitra-info', JSON.stringify(dataRegister));
       console.log(response);
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(error => {
+      if (error.response.status === 422){
+        console.error(error.response.data.error);
+      } else {
+        console.error("Terjadi Kesalaha Lain.");
+      }
     });
   };
 
