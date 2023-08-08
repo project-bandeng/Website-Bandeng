@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Image/LogoLogin.png';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from 'sweetalert2';
 import "../App.css";
 import axios from 'axios';
 
@@ -13,6 +14,7 @@ const Registerpage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [notelp, setNotelp] = useState('');
+  const navigate = useNavigate();
 
   function handleRegister() {
     // You can handle the login logic here
@@ -31,13 +33,28 @@ const Registerpage = () => {
     axios.post('http://localhost:8000/api/v1/register', dataRegister)
     .then(function (response) {
       localStorage.setItem('mitra-info', JSON.stringify(dataRegister));
+      navigate("/login");
       console.log(response);
     })
     .catch(error => {
       if (error.response.status === 422){
-        console.error(error.response.data.error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.response.data.error,
+        });
+      } else if(error.response.status === 500) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.response.data.error,
+        });
       } else {
-        console.error("Terjadi Kesalaha Lain.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Terjadi Kesalahan Lain.',
+        });
       }
     });
   };

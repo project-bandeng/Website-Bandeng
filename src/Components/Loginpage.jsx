@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Dropdown } from 'react-bootstrap';
+import { Button, Form} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Image/LogoLogin.png';
 import axios from 'axios';
@@ -21,6 +21,8 @@ const Loginpage = () => {
     axios.post('http://localhost:8000/api/v2/login', dataLogin)
     .then(function (response) {
       localStorage.setItem('Login-info', JSON.stringify(dataLogin));
+      const token = response.data.token;
+      localStorage.setItem('authToken', token);
       navigate("/");
       console.log(response);
     })
