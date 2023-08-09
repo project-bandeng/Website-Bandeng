@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../service/axios";
+import config from "../config";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
@@ -8,7 +9,7 @@ import Produk from "../Image/Produk.jpg";
 
 const ProductItem = ({ image, title }) => {
     function convertImageURL(url) {
-        const BACKEND_DOMAIN = "https://b3ed-202-80-216-244.ngrok-free.app/";
+        const BACKEND_DOMAIN = config.BACKEND_URL;
         let path = BACKEND_DOMAIN + url;
         return path;
     }
