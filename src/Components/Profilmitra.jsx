@@ -11,7 +11,7 @@ const Profilmitra = () => {
     const [email, setEmail] = useState('');
     const [no_hp, setNomer] = useState('');
     const [editMode, setEditMode] = useState(false);
-    const [activeMenu, setActiveMenu] = useState('beranda');
+    const [activeMenu, setActiveMenu] = useState('profil');
   
     const handleEdit = () => {
       setEditMode(true);
@@ -34,14 +34,14 @@ const Profilmitra = () => {
                 Main Menu
                 </h5>
                 <ul className="nav flex-column">
-                <li className={`nav-item ${activeMenu === 'beranda' ? 'active' : ''}`}>
-                    <a className={`nav-link text-dark ${activeMenu === 'beranda' ? 'active-link' : ''}`} href="#" onClick={() => setActiveMenu('beranda')}>
-                    Beranda
+                <li className={`nav-item ${activeMenu === 'profil' ? 'active' : ''}`}>
+                    <a className={`nav-link text-dark ${activeMenu === 'profil' ? 'active-link' : '/profil'}`} href="/profil" onClick={() => setActiveMenu('profil')}>
+                    PROFILE
                     </a>
                 </li>
-                <li className={`nav-item ${activeMenu === 'profil' ? 'active' : ''}`}>
-                    <a className={`nav-link text-dark ${activeMenu === 'profil' ? 'active-link' : ''}`} href="#" onClick={() => setActiveMenu('profil')}>
-                    Profil Anda
+                <li className={`nav-item ${activeMenu === 'products' ? 'active' : ''}`}>
+                    <a className={`nav-link text-dark ${activeMenu === 'products' ? 'active-link' : '/crudproduk'}`} href="/crudproduk" onClick={() => setActiveMenu('products')}>
+                    PRODUCTS
                     </a>
                 </li>
                 </ul>
