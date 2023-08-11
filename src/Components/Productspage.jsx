@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import logo2 from "../Image/logo2.png";
 import Produk from "../Image/Produk.jpg";
+import { Link } from "react-router-dom";
 
 const ProductItem = ({ image, title }) => {
     function convertImageURL(url) {
@@ -15,16 +16,19 @@ const ProductItem = ({ image, title }) => {
     }
 
     return (
-        <div className="card rounded-3 col-md-3" style={{ height: "270px" }}>
+        <Link to='' className="d-block text-decoration-none">
+        <div className="card rounded-3 col-md-3 p-3" style={{width: "300px", height: "300px" }}>
             <img
                 src={convertImageURL(image)}
                 alt="logo-mitra"
                 className="rounded-3"
+                style={{height: "200px"}}
             />
             <h3 className="text-center fw-bold" style={{ color: "#0F75BD" }}>
                 {title}
             </h3>
         </div>
+        </Link>
     );
 };
 
@@ -73,7 +77,7 @@ const Productpage = ({ id, name, description, price, imageUrl }) => {
         <div className="container-news" style={{ backgroundColor: "#DDE6ED" }}>
             <h1 className="text-center">Products</h1>
             <div className="container-card-product row mt-3 mx-5 justify-content-center">
-                <div className="col-md-11 d-flex flex-wrap gap-3 pb-5 bg-danger">
+                <div className="col-md-11 d-flex flex-wrap gap-3 pb-5 bg-danger justify-content-center">
                     {data.map((item, key) => {
                         return (
                             <ProductItem
