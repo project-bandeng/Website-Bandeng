@@ -47,10 +47,6 @@ const Productpage = ({ id, name, description, price, imageUrl }) => {
     let [profilMitra, setProfilMitra] = useState({});
     let { idMitra } = useParams([]);
 
-    function getIDFromLocalStorage() {
-        return JSON.parse(localStorage.getItem("data-user"))?.id;
-    }
-
     const isMitraHasFoto = () => {
         if (profilMitra) {
             if (profilMitra.foto_mitra) {
