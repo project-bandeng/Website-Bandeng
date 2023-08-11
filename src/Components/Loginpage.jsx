@@ -27,6 +27,7 @@ const Loginpage = () => {
                 };
                 localStorage.setItem("data-user", JSON.stringify(dataUser));
                 localStorage.setItem("auth-token", token);
+                console.log("Berhasil Login");
                 // navigate("/");
             })
             .catch((error) => {

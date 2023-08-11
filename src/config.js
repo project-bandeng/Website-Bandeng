@@ -1,5 +1,5 @@
 const config = {
-    BACKEND_URL: "https://e821-202-80-216-244.ngrok-free.app/"
+    BACKEND_URL: "https://c393-202-80-216-244.ngrok-free.app/"
 }
 
 export default config
