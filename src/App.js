@@ -21,6 +21,8 @@ import Crudproduct from './Pages/Crudproduct';
 import ResetPassPage from './Components/ResetPassPage';
 
 import MitraProdukContext from './context/MitraProductContext';
+import User from './Pages/User';
+import Artikel from './Pages/Artikel';
 
 const App = () => {
   let [mitraDetail, setMitraDetail] = useState({})
@@ -47,6 +49,8 @@ const App = () => {
           <Route path="/login/reset-password" element={<ResetPassPage />} />
           <Route path="/Profil" element={<Profil />} />
           <Route path="/Crudproduk" element={<Crudproduct />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/artikel" element={<Artikel />} />
         </Routes>
       </Router>
     </MitraProdukContext.Provider>

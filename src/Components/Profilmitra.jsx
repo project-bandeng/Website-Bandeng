@@ -132,7 +132,7 @@ const Profilmitra = () => {
 
     return (
         <div className="container-news">
-            <div className="row">
+            <div className="row"  style={{height: '630px'}}>
                 <nav
                     className="col-md-2 d-none d-md-block sidebar rounded-4 "
                     style={{ backgroundColor: "#0F75BD" }}

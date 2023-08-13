@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Produk from "../Image/Produk.jpg";
 
 const Produkcrud = () => {
-  const [products, setProducts] = useState([]);
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
+  const [productStok, setProductStok] = useState('');
   const [productImage, setProductImage] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [activeMenu, setActiveMenu] = useState('products');
@@ -16,12 +17,14 @@ const Produkcrud = () => {
         id: new Date().getTime(),
         name: productName,
         price: productPrice,
+        produk: productStok,
         image: productImage,
       };
 
       setProducts([...products, newProduct]);
       setProductName('');
       setProductPrice('');
+      setProductStok('');
       setProductImage(null);
     }
   };
@@ -31,6 +34,7 @@ const Produkcrud = () => {
     if (editedProduct) {
       setProductName(editedProduct.name);
       setProductPrice(editedProduct.price);
+      setProductStok(editedProduct.stok);
       setEditMode(true);
     }
   };
@@ -38,11 +42,12 @@ const Produkcrud = () => {
   const handleUpdateProduct = () => {
     if (productName && productPrice) {
       const updatedProducts = products.map((product) =>
-        product.id === editMode ? { ...product, name: productName, price: productPrice } : product
+        product.id === editMode ? { ...product, name: productName, price: productPrice, stok: productStok } : product
       );
       setProducts(updatedProducts);
       setProductName('');
       setProductPrice('');
+      setProductStok('');
       setEditMode(false);
     }
   };
@@ -57,9 +62,25 @@ const Produkcrud = () => {
     setProductImage(imageFile);
   };
 
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      name: 'Produk A',
+      price: 100,
+      stok: 50,
+    },
+    {
+      id: 2,
+      name: 'Produk B',
+      price: 150,
+      stok: 30,
+    },
+    // ... tambahkan lebih banyak data produk di sini jika diperlukan
+  ]);
+
   return (
     <div className="container-news">
-        <div className="row" >
+        <div className="row"  style={{height: '630px'}}>
           <nav className="col-md-2 d-none d-md-block sidebar rounded-4 " style={{ backgroundColor: '#0F75BD' }}>
           <div className="position-sticky">
                 <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
@@ -126,6 +147,18 @@ const Produkcrud = () => {
                         onChange={(e) => setProductPrice(e.target.value)}
                       />
                     </div>
+                    <div className="mb-3">
+                      <label htmlFor="product-stok" className="form-label">
+                        Stok Produk
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="product-stok"
+                        value={productStok}
+                        onChange={(e) => setProductStok(e.target.value)}
+                      />
+                    </div>
                     <button className="btn btn-primary me-2" onClick={handleUpdateProduct}>
                       Simpan Perubahan
                     </button>
@@ -142,15 +175,23 @@ const Produkcrud = () => {
                           <th>Gambar</th>
                           <th>Nama Produk</th>
                           <th>Harga</th>
+                          <th>Stok</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
                         {products.map((product) => (
                           <tr key={product.id}>
-                            <td>{product.image}</td>
+                              <td>
+                              <img
+                                src={Produk}
+                                alt={product.name}
+                                style={{ maxWidth: '100px', maxHeight: '100px' }}
+                              />
+                            </td>
                             <td>{product.name}</td>
                             <td>{product.price}</td>
+                            <td>{product.stok}</td>
                             <td>
                               <button
                                 className="btn btn-primary me-2"
