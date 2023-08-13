@@ -1,7 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import LogoMitra1 from "../../Image/juwana-logo.png";
-import Produk from "../../Image/Produk.jpg";
 import Cart from "../../Image/Cart.png";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
