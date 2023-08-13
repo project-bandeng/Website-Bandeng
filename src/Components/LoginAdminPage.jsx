@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Image/LogoLogin.png";
-import axios from "../service/axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 
-const Loginpage = () => {
+const LoginAdminPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Loginpage = () => {
         let dataLogin = { email, password };
 
         axios
-            .post("/api/v2/login", dataLogin)
+            .post("/api/admin/login", dataLogin)
             .then(function (response) {
                 console.log(response);
                 const token = response.data.token.token;
@@ -57,7 +57,7 @@ const Loginpage = () => {
                 </div>
                 <div className="col-md-5 bg-primary p-4 rounded-end">
                     <h1 className="h1 text-white fw-bolder text-center my-5">
-                        LOGIN
+                        LOGIN ADMIN
                     </h1>
                     <Form onSubmit={handleLogin} className="px-5">
                         <Form.Group controlId="formEmail">
@@ -115,4 +115,4 @@ const Loginpage = () => {
     );
 };
 
-export default Loginpage;
+export default LoginAdminPage;

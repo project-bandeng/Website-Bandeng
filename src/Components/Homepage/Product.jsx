@@ -13,23 +13,28 @@ import useBackendURLTranslator from "../../hooks/useBackendURLTranslator";
 function ProductItem({ data }) {
     let convertImage = useBackendURLTranslator();
     return (
-        <div className="card rounded-3" style={{ height: "270px" }}>
-            <img
-                src={data.foto_produk && convertImage(data.foto_produk)}
-                alt="logo-mitra"
-                className="rounded-3 object-fit-cover"
-                style={{ height: "180px" }}
-            />
-            <h4 className="text-center fw-bold" style={{ color: "#0F75BD" }}>
-                {data.nmProduk}
-            </h4>
-            <div className="d-flex justify-content-between align-items-center px-4">
-                <p className="product-price mb-0">Rp. {data.hrgProduk}</p>
-                <div className="rounded-circle bg-primary p-2">
-                    <img src={Cart} alt="keranjang" width="25px" />
+        <Link to={`deskripsi/${data.id}`} style={{ textDecoration: "none" }}>
+            <div className="card rounded-3" style={{ height: "270px" }}>
+                <img
+                    src={data.foto_produk && convertImage(data.foto_produk)}
+                    alt="logo-mitra"
+                    className="rounded-3 object-fit-cover"
+                    style={{ height: "180px" }}
+                />
+                <h4
+                    className="text-center fw-bold"
+                    style={{ color: "#0F75BD" }}
+                >
+                    {data.nmProduk}
+                </h4>
+                <div className="d-flex justify-content-between align-items-center px-4">
+                    <p className="product-price mb-0">Rp. {data.hrgProduk}</p>
+                    <div className="rounded-circle bg-primary p-2">
+                        <img src={Cart} alt="keranjang" width="25px" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

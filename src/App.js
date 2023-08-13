@@ -11,12 +11,14 @@ import Contact from './Pages/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import Login from './Pages/Login';
+import LoginAdmin from './Pages/LoginAdmin';
 import Register from './Pages/Register';
 import MainNavbar from './Components/MainNavbar';
 import Deskripsi from './Pages/Deskripsi';
 import Fpass from './Pages/Fpass';
 import Profil from './Pages/Profil';
 import Crudproduct from './Pages/Crudproduct';
+import ResetPassPage from './Components/ResetPassPage';
 
 import MitraProdukContext from './context/MitraProductContext';
 
@@ -32,6 +34,7 @@ const App = () => {
         <MainNavbar />
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/login/admin" element={<LoginAdmin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
           <Route path="/About" element={<About />} />
@@ -39,8 +42,9 @@ const App = () => {
           <Route path="/product/mitra/:idMitra" element={<ProductMitra />} />
           <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/Deskripsi" element={<Deskripsi />} />
+          <Route path="/Deskripsi/:idProduct" element={<Deskripsi />} />
           <Route path="/login/forgot-password" element={<Fpass />} />
+          <Route path="/login/reset-password" element={<ResetPassPage />} />
           <Route path="/Profil" element={<Profil />} />
           <Route path="/Crudproduk" element={<Crudproduct />} />
         </Routes>
