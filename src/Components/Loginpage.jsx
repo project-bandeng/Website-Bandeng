@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Image/LogoLogin.png";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Forgotpasspage from "./Forgotpass";
 
 const Loginpage = () => {
     const [email, setEmail] = useState("");
@@ -81,7 +80,7 @@ const Loginpage = () => {
                             />
                         </Form.Group>
                         <div className="d-flex justify-content-end mb-3 mx-2">
-                            <Link to="" className="text-white">
+                            <Link to="/login/forgot-password" className="text-white">
                                 Lupa Password?
                             </Link>
                         </div>
@@ -102,7 +101,7 @@ const Loginpage = () => {
                     <div className="mt-4 d-flex justify-content-center">
                         <p className="text-white">
                             Masih Belum Punya Akun?{" "}
-                            <Link className="text-white">Sign Up</Link>
+                            <Link to="/register" className="text-white">Sign Up</Link>
                         </p>
                     </div>
                 </div>

@@ -8,13 +8,15 @@ import Swal from 'sweetalert2';
 
 const Forgotpasspage = () => {
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [conPassword, setConPassword] = useState('');
   
-    function handleFPass() {
-      let dataFpass = {email};
+    function handleRPass() {
+      let dataRpass = {email, password, conPassword};
   
-      axios.post('/api/v2/login/forgot-password', dataFpass)
+      axios.post('/api/v2/login/reset-password', dataRpass)
       .then(function (response) {
-        localStorage.setItem('Forgot-Pass-info', JSON.stringify(dataFpass));
+        localStorage.setItem('Reset-Pass-info', JSON.stringify(dataRpass));
         // navigate("/");
         console.log(response);
       })
@@ -39,7 +41,7 @@ const Forgotpasspage = () => {
             <img src={forgotIcon} alt="ForgotPass" />
             <h1 className='h1 text-white fw-bolder text-center'>Reset Password</h1>
             <p className='text-white'>Masukkan email yang anda daftarkan dan kami akan mengirimkan instruksi untuk mengatur ulang kata sandi.</p>
-            <Form onSubmit={handleFPass} className='px-5'>
+            <Form onSubmit={handleRPass} className='px-5'>
               <Form.Group controlId="formEmail">
                 <Form.Control
                   type="email"
@@ -49,10 +51,27 @@ const Forgotpasspage = () => {
                   className="rounded-pill mb-4 p-2 form-login"
                 />
               </Form.Group>
-
+              <Form.Group controlId="formEmail">
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="rounded-pill mb-4 p-2 form-login"
+                />
+              </Form.Group>
+              <Form.Group controlId="formEmail">
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={conPassword}
+                  onChange={(e) => setConPassword(e.target.value)}
+                  className="rounded-pill mb-4 p-2 form-login"
+                />
+              </Form.Group>
               <div className='d-flex justify-content-center'>
                 <Link>
-                  <Button variant="light" type="submit" className='rounded-pill fw-bold text-primary' style={{width: '180px'}} onClick={handleFPass}>
+                  <Button variant="light" type="submit" className='rounded-pill fw-bold text-primary' style={{width: '180px'}} onClick={handleRPass}>
                   Reset Password
                   </Button>
                 </Link>

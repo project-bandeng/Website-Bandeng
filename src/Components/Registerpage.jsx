@@ -24,7 +24,6 @@ const Registerpage = () => {
             alamatMitra: alamat,
             no_tlp: notelp,
             email,
-            password,
         };
 
         axios
@@ -133,7 +132,7 @@ const Registerpage = () => {
                                 required
                             />
                         </Form.Group>
-
+{/* 
                         <Form.Group controlId="formPassword">
                             <Form.Control
                                 type="password"
@@ -143,7 +142,7 @@ const Registerpage = () => {
                                 className="rounded-pill mb-2 p-2 form-register"
                                 required
                             />
-                        </Form.Group>
+                        </Form.Group> */}
                         <div className="d-flex justify-content-center mt-3">
                             <Link>
                                 <Button
