@@ -3,6 +3,7 @@ import MitraProdukContext from '../context/MitraProductContext';
 import config from '../config';
 import axios from '../service/axios';
 import Produk from '../Image/Produk.jpg';
+import DescBenefit from '../Image/benefit-desc1.png';
 import { Card, Button } from 'react-bootstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -111,12 +112,12 @@ const Homepage = () => {
       <MitraSection />
       {/* about Section */}
       <section className="section-about" style={{ backgroundColor: '#47545F' }}>
-        <div className="d-flex py-5 container flex-sm-column">
-          <div className="">
-            <h3 className="text-white start-50 heading3">
+        <div className="d-flex py-5 container flex-lg-row flex-sm-column section-about-container">
+          <div className="d-flex flex-sm-column align-items-sm-center align-items-lg-start pb-sm-4 pb-lg-0 container-about-desc">
+            <h3 className="text-white h3 about-desc-heading">
               ABOUT <span style={{ color: '#5CBBFF' }}>D'BANDENG</span>
             </h3>
-            <p className="text-white" style={{ fontSize: '1.3rem' }}>
+            <p className="text-white text-lg-start text-sm-center about-section-content" style={{ fontSize: '1.3rem' }}>
               Kami menyediakan berbagai macam jenis olahan ikan bandeng kepada pelanggan kami dengan menjaga kualitas dan kelezatannya
             </p>
             <Link to="/about">
@@ -125,8 +126,8 @@ const Homepage = () => {
               </button>
             </Link>
           </div>
-          <div className="d-flex align-items-center">
-            <div className="p-3 rounded-3 d-flex gap-5 container-about-card">
+          <div className="d-flex align-items-center container-about-head justify-content-center justify-content-lg-start">
+            <div className="p-3 rounded-3 d-flex gap-md-5 gap-sm-2 container-about-card">
               <div className="rounded-3 card p-2 container-card">
                 <div className="container-content-card" style={{ width: '175px' }}>
                   <img src={About1} alt="img-vision" className="about-img" />
@@ -158,24 +159,42 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+      <Product />
+      <News />
+      <div className="container-fluid pt-4" style={{ backgroundColor: '#DDE6ED' }}>
+        <h1 className="info-title text-center">Kenapa Harus D'Bandeng?</h1>
+        <div className="d-flex container">
+          <div className="d-flex benefit-desc-container">
+            <div className="circle-icon rounded-circle bg-primary">
+            <img src={DescBenefit} alt="icon-benefit" />
+            </div>
+            <div className="benefit-desc">
+              <h3>Pengiriman</h3>
+              <p>Males keluar rumah ? <span className='text-primary'>D’Bandeng</span> bisa nih kalau dipesan dari rumah</p>
+            </div>
+          </div>
+          <div className="d-flex benefit-desc-container">
+            <div className="circle-icon rounded-circle bg-primary">
+            <img src={DescBenefit} alt="icon-benefit" />
+            </div>
+            <div className="benefit-desc">
+              <h3>Fleksibel</h3>
+              <p>Kemudahan akses</p>
+            </div>
+          </div>
+          <div className="d-flex benefit-desc-container">
+            <div className="circle-icon rounded-circle bg-primary">
+            <img src={DescBenefit} alt="icon-benefit" />
+            </div>
+            <div className="benefit-desc">
+              <h3>Terjangkau</h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
-    //             {/* product Section */}
-    //             <div
-    //                 className="container-fluid pt-4"
-    //                 style={{ backgroundColor: "#DDE6ED" }}
-    //             >
-    //                 <Product />
-    //                 <News />
 
-    //                 <div
-    //                     className="container-fluid pt-4"
-    //                     style={{ backgroundColor: "#DDE6ED" }}
-    //                 >
-    //                     <h1 className="info-title text-center">
-    //                         Kenapa Harus D'Bandeng?
-    //                     </h1>
-
-    //                 </div>
     //                 <Contact />
     //                 <div
     //                     className="container-fluid pt-5 pb-5"

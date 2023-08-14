@@ -7,7 +7,7 @@ import { Carousel } from 'react-bootstrap';
 export default function CarouselHead() {
   return (
     // carousel section start
-    <section className=''>
+    <section className='carousel-section'>
       <div className="container-fluid" style={{ paddingLeft: 0, paddingRight: 0 }}>
       <Carousel>
         <Carousel.Item>
