@@ -230,6 +230,8 @@ const Produkcrud = () => {
             .get("/api/v2/logout-mitra")
             .then((res) => {
                 console.log(res);
+                localStorage.removeItem("data-user");
+                localStorage.removeItem("auth-token");
                 navigate("/login");
             })
             .catch((err) => {
@@ -238,7 +240,7 @@ const Produkcrud = () => {
     };
 
     useEffect(() => {
-        fetchDataProduk(dataUser.id);
+        fetchDataProduk(dataUser?.id);
     }, []);
 
     return (

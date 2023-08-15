@@ -20,6 +20,7 @@ import Profil from './Pages/Profil';
 import Crudproduct from './Pages/Crudproduct';
 import ResetPassPage from './Components/ResetPassPage';
 import Kelolaartikel from './Components/Kelolaartikel';
+import Kelolauser from './Components/Kelolauser';
 
 import MitraProdukContext from './context/MitraProductContext';
 import User from './Pages/User';
@@ -49,9 +50,9 @@ const App = () => {
           <Route path="/login/forgot-password" element={<Fpass />} />
           <Route path="/login/reset-password" element={<ResetPassPage />} />
           <Route path="/Profil" element={<Profil />} />
-          <Route path="/Crudproduk" element={<Crudproduct />} />
-          <Route path="/Crudartikel" element={<Kelolaartikel />} />
-          <Route path="/Crudproduk" element={<Crudproduct />} />
+          <Route path="/crudproduk" element={<Crudproduct />} />
+          <Route path="/crudartikel" element={<Kelolaartikel />} />
+          <Route path="/cruduser" element={<Kelolauser />} />
           <Route path="/user" element={<User />} />
           <Route path="/artikel" element={<Artikel />} />
         </Routes>
