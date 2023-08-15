@@ -40,7 +40,7 @@ const Produkcrud = () => {
 
     const fetchDataProduk = (id) => {
         axios
-            .get(`/api/product/read/${id}`)
+            .get(`/api/product/read-mitra/${id}`)
             .then((res) => {
                 setStatusDataOrigin(0);
                 console.log(res);

@@ -161,38 +161,42 @@ const Homepage = () => {
       </section>
       <Product />
       <News />
-      <div className="container-fluid pt-4" style={{ backgroundColor: '#DDE6ED' }}>
-        <h1 className="info-title text-center">Kenapa Harus D'Bandeng?</h1>
-        <div className="d-flex container">
-          <div className="d-flex benefit-desc-container">
-            <div className="circle-icon rounded-circle bg-primary">
-            <img src={DescBenefit} alt="icon-benefit" />
+      <section className="benefit-section" style={{ backgroundColor: '#DDE6ED' }}>
+        <div className="container pt-4">
+          <h1 className="info-title text-center">Kenapa Harus D'Bandeng?</h1>
+          <div className="d-flex container gap-2">
+            <div className="d-flex benefit-desc-container col-md-4">
+              <div className="circle-icon rounded-circle bg-primary">
+                <img src={DescBenefit} alt="icon-benefit" />
+              </div>
+              <div className="benefit-desc">
+                <h3>Pengiriman</h3>
+                <p>
+                  Males keluar rumah ? <span className="text-primary">D’Bandeng</span> menghadirkan kemudahan pemesanan & pengiriman produk dari rumah
+                </p>
+              </div>
             </div>
-            <div className="benefit-desc">
-              <h3>Pengiriman</h3>
-              <p>Males keluar rumah ? <span className='text-primary'>D’Bandeng</span> bisa nih kalau dipesan dari rumah</p>
+            <div className="d-flex benefit-desc-container col-md-4">
+              <div className="circle-icon rounded-circle bg-primary">
+                <img src={DescBenefit} alt="icon-benefit" />
+              </div>
+              <div className="benefit-desc">
+                <h3>Fleksibel</h3>
+                <p>Kemudahan akses hingga 24 jam dan menghadirkan kemudahan berbelanja, terutama pada produk olahan bandeng</p>
+              </div>
             </div>
-          </div>
-          <div className="d-flex benefit-desc-container">
-            <div className="circle-icon rounded-circle bg-primary">
-            <img src={DescBenefit} alt="icon-benefit" />
-            </div>
-            <div className="benefit-desc">
-              <h3>Fleksibel</h3>
-              <p>Kemudahan akses</p>
-            </div>
-          </div>
-          <div className="d-flex benefit-desc-container">
-            <div className="circle-icon rounded-circle bg-primary">
-            <img src={DescBenefit} alt="icon-benefit" />
-            </div>
-            <div className="benefit-desc">
-              <h3>Terjangkau</h3>
-              <p></p>
+            <div className="d-flex benefit-desc-container col-md-4">
+              <div className="circle-icon rounded-circle bg-primary">
+                <img src={DescBenefit} alt="icon-benefit" />
+              </div>
+              <div className="benefit-desc">
+                <h3>Terjangkau</h3>
+                <p>Menawarkan harga yang lebih terjangkau dan menghadirkan penawaran khusus juga promo</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
 
     //                 <Contact />
