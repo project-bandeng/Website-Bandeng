@@ -352,6 +352,13 @@
   .swiper {
     width: 75%;
   }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
   .section-mitra-content {
     font-size: 12px !important;
   }
@@ -386,4 +393,20 @@
   .product-card-img-home {
     height: 130px !important;
   }
+  .section-about-container {
+    flex-direction: column;
+  }
+  
+  .container-about-head {
+    justify-content: center;
+  }
+  .container-about-card {
+    flex-direction: column;
+  }
+  
+  .benefit-desc-container {
+    flex-direction: column;
+  }  
+
+  
 }

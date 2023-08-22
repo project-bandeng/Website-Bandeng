@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap';
 import { Link } from 'react-router-dom';
 import 'typeface-poppins';
 import logo2 from '../Image/logo2.png'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Aboutpage = () => {
     return (
@@ -51,11 +52,30 @@ const Aboutpage = () => {
         </div>
         </div>
         </div>
-        <div className="pt-5 pb-5" style={{backgroundColor: '#0F75BD'}}>
+        <footer>
+        <div className="container-fluid pt-4" style={{backgroundColor: '#0F75BD'}}>
         <div className='ms-5'>
           <img src={logo2} />
           </div>
+          <div className="container pt-2">
+          <span className="text-muted">
+            Follow us on: {' '}
+            <a href="https://www.facebook.com/yourcompany" target="_blank" rel="noopener noreferrer">
+              <i className="bi-facebook text-white"></i> {/* Gunakan kelas Bootstrap Icons */}
+            </a>{' '}
+            <a href="https://www.twitter.com/yourcompany" target="_blank" rel="noopener noreferrer">
+              <i className="bi-twitter text-white"></i>
+            </a>{' '}
+            <a href="https://www.instagram.com/yourcompany" target="_blank" rel="noopener noreferrer">
+              <i className="bi-instagram text-white"></i>
+            </a>
+          </span>
+        </div>
+        <div className='container text-center'>
+        <span className="text-white pt-5">© 2023 D'Bandeng. All rights reserved.</span>
+        </div>
       </div>
+      </footer>
       </div>
       </div>
       </div>

@@ -1,0 +1,35 @@
+/* Aboutpage.css */
+
+.logo-img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .highlight-text {
+    color: #0497FF;
+  }
+  
+  .poppins-font {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .card-body {
+    height: 100%;
+  }
+  
+  /* Media query untuk tampilan responsif */
+  @media (max-width: 767px) {
+    .col-md-6,
+    .col-md-4 {
+      padding: 15px;
+    }
+  
+    .col-md-4 {
+      width: 100%;
+    }
+  
+    .logo-img {
+      max-width: 70%;
+    }
+  }
+  
