@@ -23,7 +23,7 @@ export default function MitraSection() {
       <div className="col">
         <Card>
           <Card.Body>
-            <img className="d-block w-100 mb-3 rounded-3" src={fotoMitra} alt="Logo Mitra " />
+            <img className="d-block w-100 mb-3 rounded-3" src={fotoMitra} alt="Logo Mitra " style={{height: "200px"}} />
             <Card.Title className="mb-3 Card-mitra-title">{namaMitra}</Card.Title>
             <Link to="">
               <Button variant="primary Card-mitra-button">Lihat Selengkapnya</Button>

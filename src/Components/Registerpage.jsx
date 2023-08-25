@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import "../App.css";
 import axios from "axios";
+import "../register.css"
 
 const Registerpage = () => {
     const [username, setUsername] = useState("");
@@ -59,26 +60,16 @@ const Registerpage = () => {
     // };
 
     return (
-        <div className="login-container container-fluid">
-            <div
-                className="row justify-content-center align-items-center mx-5"
-                style={{ height: "100vh" }}
-            >
-                <div
-                    className="col-md-5 bg-white d-flex justify-content-center rounded-start"
-                    style={{ padding: "2.6rem" }}
-                >
-                    <img
-                        src={Logo}
-                        alt="Logo D'Bandeng"
-                        className="img-fluid"
-                    />
-                </div>
-                <div className="col-md-5 bg-primary p-4 rounded-end">
+                    <div className="login-container">
+                    <div className="login-content">
+                    <div className="logo-container">
+                        <img src={Logo} alt="Logo D'Bandeng" className="img-fluid" />
+                    </div>
+                    <div className="form-container">
                     <h1 className="h1 text-white fw-bolder text-center mb-3">
                         REGISTER
                     </h1>
-                    <Form className="px-5">
+                    <Form className="">
                         <Form.Group controlId="formNama">
                             <Form.Control
                                 type="text"

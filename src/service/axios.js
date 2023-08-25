@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const instance = axios.create({
-    //baseURL: "https://15f9-202-80-217-240.ngrok-free.app/",
+    baseURL: "https://c909-2001-448a-4005-2209-7085-8522-dc05-c55b.ngrok-free.app/",
     headers : {
         "Accept" : "application/json",
         "Authorization" : `Bearer ${localStorage.getItem('auth-token')}` || "",
