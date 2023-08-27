@@ -7,12 +7,15 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Produk from "../Image/Produk.jpg";
 import axios from "../service/axios";
+import useDataFilter from "../hooks/useDataFilter";
 
 const Produkcrud = () => {
   const navigate = useNavigate();
   const dataUser = useLocalStorageUserData();
   const convertImage = useBackendURLTranslator();
-  const [statusDataOrigin, setStatusDataOrigin] = useState(0); //0 dari seever 1 dari local
+  const searchData = useDataFilter();
+
+  const [statusDataOrigin, setStatusDataOrigin] = useState(0); //0 dari server 1 dari local
   const [action, setAction] = useState("");
   const [productId, setProductId] = useState("");
   const [productName, setProductName] = useState("");
@@ -25,22 +28,7 @@ const Produkcrud = () => {
   const [editMode, setEditMode] = useState(false);
   const [activeMenu, setActiveMenu] = useState("products");
   const [productsPrev, setProductsPrev] = useState([]);
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      nmProduk: "Produk A",
-      hrgProduk: 100,
-      stok: 50,
-    },
-    {
-      id: 2,
-      name: "Produk B",
-      price: 150,
-      stok: 30,
-    },
-    // ... tambahkan lebih banyak data produk di sini jika diperlukan
-  ]);
-
+  const [products, setProducts] = useState([]);
   const [textSearch, setTextSearch] = useState("");
 
   useEffect(() => {
@@ -58,18 +46,8 @@ const Produkcrud = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setProductsPrev([...products]);
-
-    let filteredData = products.filter((item) => {
-      console.log(item.nmProduk + " " + textSearch);
-      if (item.nmProduk.search(textSearch) > -1) {
-        return true;
-      }
-
-      return false;
-    });
-    console.log(filteredData);
-    setProducts([...filteredData]);
+    let filteredProduk = searchData(productsPrev, textSearch, "nmProduk");
+    setProducts(filteredProduk);
   };
 
   const fetchDataProduk = (id) => {
@@ -78,6 +56,7 @@ const Produkcrud = () => {
       .then((res) => {
         setStatusDataOrigin(0);
         console.log(res);
+        setProductsPrev(res.data.products);
         setProducts(res.data.products);
       })
       .catch((err) => {

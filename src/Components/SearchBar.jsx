@@ -2,6 +2,7 @@ export default function SearchBar({
   textToSearch,
   setTextToSearch,
   handleSearch,
+  placeholder = "Cari",
 }) {
   return (
     <form className="d-inline-flex ms-5 ms-md-0" onSubmit={handleSearch}>
@@ -9,7 +10,7 @@ export default function SearchBar({
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Cari Produk"
+          placeholder={placeholder}
           aria-label="Search"
           value={textToSearch}
           onChange={(e) => setTextToSearch(e.target.value)}
