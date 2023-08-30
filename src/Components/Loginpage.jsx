@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Image/LogoLogin.png";
 import axios from "../service/axios";
 import Swal from "sweetalert2";
+import "../login.css"
 
 const Loginpage = () => {
     const [email, setEmail] = useState("");
@@ -40,26 +41,16 @@ const Loginpage = () => {
     }
 
     return (
-        <div className="login-container container-fluid">
-            <div
-                className="row justify-content-center align-items-center mx-5"
-                style={{ height: "100vh" }}
-            >
-                <div
-                    className="col-md-5 bg-white d-flex justify-content-center rounded-start"
-                    style={{ padding: "2.0rem" }}
-                >
-                    <img
-                        src={Logo}
-                        alt="Logo D'Bandeng"
-                        className="img-fluid"
-                    />
-                </div>
-                <div className="col-md-5 bg-primary p-4 rounded-end">
+                    <div className="login-container">
+                    <div className="login-content">
+                    <div className="logo-container">
+                        <img src={Logo} alt="Logo D'Bandeng" className="img-fluid" />
+                    </div>
+                    <div className="form-container">
                     <h1 className="h1 text-white fw-bolder text-center my-5">
                         LOGIN
                     </h1>
-                    <Form onSubmit={handleLogin} className="px-5">
+                    <Form onSubmit={handleLogin} className="">
                         <Form.Group controlId="formEmail">
                             <Form.Control
                                 type="email"
@@ -110,7 +101,7 @@ const Loginpage = () => {
                         </p>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
     );
 };

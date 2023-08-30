@@ -1,9 +1,10 @@
 import axios from 'axios';
+import config from '../config';
 
 
 
 const instance = axios.create({
-    baseURL: "https://9faa-202-80-217-240.ngrok-free.app/",
+    baseURL: config.BACKEND_URL,
     headers : {
         "Accept" : "application/json",
         "Authorization" : `Bearer ${localStorage.getItem('auth-token')}` || "",
