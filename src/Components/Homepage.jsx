@@ -4,7 +4,6 @@ import config from '../config';
 import axios from '../service/axios';
 import Produk from '../Image/Produk.jpg';
 import DescBenefit from '../Image/benefit-desc1.png';
-import { Card, Button } from 'react-bootstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
@@ -12,19 +11,8 @@ import { Link } from 'react-router-dom';
 import About1 from '../Image/about-image1.png';
 import About2 from '../Image/about-image2.png';
 import About3 from '../Image/about-image3.png';
-import LogoMitra1 from '../Image/juwana-logo.png';
-import logo2 from '../Image/logo2.png';
-import Cart from '../Image/Cart.png';
-// import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import Fleksibel from '../Image/fleksibel.png';
+import Terjangkau from '../Image/terjangkau.png';
 
 //Import Component Homepage
 import Product from './Homepage/Product';
@@ -32,6 +20,7 @@ import News from './Homepage/News';
 import Contact from './Homepage/Contact';
 import CarouselHead from './Homepage/CarouselHead';
 import MitraSection from './Homepage/MitraSection';
+import Footer from './Homepage/footer';
 
 const Homepage = () => {
   const elements = [
@@ -162,58 +151,44 @@ const Homepage = () => {
       <Product />
       <News />
       <section className="benefit-section" style={{ backgroundColor: '#DDE6ED' }}>
-        <div className="container pt-4">
+        <div className="container pt-5">
           <h1 className="info-title text-center">Kenapa Harus D'Bandeng?</h1>
-          <div className="d-flex container gap-2">
-            <div className="d-flex benefit-desc-container col-md-4">
-              <div className="circle-icon rounded-circle bg-primary">
-                <img src={DescBenefit} alt="icon-benefit" />
+          <div className="mt-5 d-flex container gap-lg-2 gap-md-5 gap-3 flex-md-row flex-column">
+            <div className="d-flex benefit-desc-container align-items-center flex-lg-row flex-column gap-3">
+              <div className="circle-icon rounded-circle bg-primary p-3">
+                <img src={DescBenefit} alt="icon-benefit" style={{ width: '60px' }} />
               </div>
               <div className="benefit-desc">
-                <h3>Pengiriman</h3>
-                <p>
+                <h3 className="text-lg-start text-center">Pengiriman</h3>
+                <p className="text-lg-start text-center">
                   Males keluar rumah ? <span className="text-primary">D’Bandeng</span> menghadirkan kemudahan pemesanan & pengiriman produk dari rumah
                 </p>
               </div>
             </div>
-            <div className="d-flex benefit-desc-container col-md-4">
-              <div className="circle-icon rounded-circle bg-primary">
-                <img src={DescBenefit} alt="icon-benefit" />
+            <div className="d-flex benefit-desc-container align-items-center flex-lg-row flex-column gap-3">
+              <div className="circle-icon rounded-circle bg-primary p-3">
+                <img src={Fleksibel} alt="icon-benefit-2" style={{ width: '60px' }} />
               </div>
               <div className="benefit-desc">
-                <h3>Fleksibel</h3>
-                <p>Kemudahan akses hingga 24 jam dan menghadirkan kemudahan berbelanja, terutama pada produk olahan bandeng</p>
+                <h3 className="text-lg-start text-center">Fleksibel</h3>
+                <p className="text-lg-start text-center">Kemudahan akses hingga 24 jam dan menghadirkan kemudahan berbelanja, terutama pada produk olahan bandeng</p>
               </div>
             </div>
-            <div className="d-flex benefit-desc-container col-md-4">
-              <div className="circle-icon rounded-circle bg-primary">
-                <img src={DescBenefit} alt="icon-benefit" />
+            <div className="d-flex benefit-desc-container align-items-center flex-lg-row flex-column gap-3">
+              <div className="circle-icon rounded-circle bg-primary p-3">
+                <img src={Terjangkau} alt="icon-benefit-3" style={{ width: '60px' }} />
               </div>
               <div className="benefit-desc">
-                <h3>Terjangkau</h3>
-                <p>Menawarkan harga yang lebih terjangkau dan menghadirkan penawaran khusus juga promo</p>
+                <h3 className="text-lg-start text-center">Terjangkau</h3>
+                <p className="text-lg-start text-center">Menawarkan harga yang lebih terjangkau dan menghadirkan penawaran khusus juga promo</p>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <Contact />
+      <Footer />
     </>
-
-    //                 <Contact />
-    //                 <div
-    //                     className="container-fluid pt-5 pb-5"
-    //                     style={{ backgroundColor: "#0F75BD" }}
-    //                 >
-    //                     <footer>
-    //                         <div className="ms-5">
-    //                             <img src={logo2} />
-    //                         </div>
-    //                     </footer>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>
   );
 };
 

@@ -8,6 +8,8 @@ import "bootstrap/dist/js/bootstrap";
 import logo2 from "../Image/logo2.png";
 import Produk from "../Image/Produk.jpg";
 import { Link } from "react-router-dom";
+import Footer from "./Homepage/footer";
+import SearchBar from "./SearchBar";
 
 const ProductItem = ({ image, title, idMitra }) => {
     let { setMitraDetail, listMitra } = useContext(MitraProdukContext);
@@ -99,30 +101,7 @@ const Productpage = ({ id, name, description, price, imageUrl }) => {
                     })}
                 </div>
             </div>
-            <footer>
-        <div className="container-fluid pt-4" style={{backgroundColor: '#0F75BD'}}>
-        <div className='ms-5'>
-          <img src={logo2} />
-          </div>
-          <div className="container pt-2">
-          <span className="text-muted">
-            Follow us on: {' '}
-            <a href="https://www.facebook.com/yourcompany" target="_blank" rel="noopener noreferrer">
-              <i className="bi-facebook text-white"></i> {/* Gunakan kelas Bootstrap Icons */}
-            </a>{' '}
-            <a href="https://www.twitter.com/yourcompany" target="_blank" rel="noopener noreferrer">
-              <i className="bi-twitter text-white"></i>
-            </a>{' '}
-            <a href="https://www.instagram.com/yourcompany" target="_blank" rel="noopener noreferrer">
-              <i className="bi-instagram text-white"></i>
-            </a>
-          </span>
-        </div>
-        <div className='container text-center'>
-        <span className="text-white pt-5">© 2023 D'Bandeng. All rights reserved.</span>
-        </div>
-      </div>
-      </footer>
+            <Footer />
         </div>
     );
 };
