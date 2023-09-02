@@ -35,6 +35,7 @@ const ProductItem = ({ image, title, price, link }) => {
 };
 
 export default function ProductPageV2() {
+  document.title = "Produk";
   let [activeMitraId, setActiveMitraId] = useState();
   let [dataMitra, setDataMitra] = useState([]);
   let [dataProduk, setDataProduk] = useState([]);

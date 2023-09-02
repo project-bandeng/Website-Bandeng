@@ -6,6 +6,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const LoginAdminPage = () => {
+    document.title = "Login Admin";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ const LoginAdminPage = () => {
                 localStorage.setItem("data-user", JSON.stringify(dataUser));
                 localStorage.setItem("auth-token", token);
                 console.log("Berhasil Login");
-                // navigate("/");
+                navigate("/cruduser");
             })
             .catch((error) => {
                 console.log(error);
@@ -79,15 +80,7 @@ const LoginAdminPage = () => {
                                 className="rounded-pill mb-2 p-2 form-login"
                             />
                         </Form.Group>
-                        <div className="d-flex justify-content-end mb-3 mx-2">
-                            <Link
-                                to="/login/forgot-password"
-                                className="text-white"
-                            >
-                                Lupa Password?
-                            </Link>
-                        </div>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center mt-4">
                             <Link>
                                 <Button
                                     variant="light"
@@ -101,14 +94,6 @@ const LoginAdminPage = () => {
                             </Link>
                         </div>
                     </Form>
-                    <div className="mt-4 d-flex justify-content-center">
-                        <p className="text-white">
-                            Masih Belum Punya Akun?{" "}
-                            <Link to="/register" className="text-white">
-                                Sign Up
-                            </Link>
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>

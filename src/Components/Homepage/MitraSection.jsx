@@ -18,7 +18,7 @@ export default function MitraSection() {
   const [mitraDataLocal, setMitraDataLocal] = useState([]);
   const { listMitra, setListMitra } = useContext(MitraProdukContext);
 
-  const CardMitra = ({ fotoMitra, namaMitra, link }) => {
+  const CardMitra = ({ fotoMitra, namaMitra, id }) => {
     return (
       <div className="col">
         <Card>
@@ -32,7 +32,7 @@ export default function MitraSection() {
             <Card.Title className="mb-3 Card-mitra-title">
               {namaMitra}
             </Card.Title>
-            <Link to="">
+            <Link to={`/product/mitra/${id}`}>
               <Button variant="primary Card-mitra-button">
                 Lihat Selengkapnya
               </Button>
@@ -119,7 +119,7 @@ export default function MitraSection() {
                     isMitraHasFoto(item) ? convertImageURL(item.foto_mitra) : ""
                   }
                   namaMitra={item.namaMitra}
-                  link={item.link}
+                  id={item.id}
                 />
               </SwiperSlide>
             );

@@ -52,6 +52,7 @@ const Productpage = ({ id, name, description, price, imageUrl }) => {
   let [profilMitra, setProfilMitra] = useState({});
   let { idMitra } = useParams([]);
   let [isLoading, setIsLoading] = useState(true);
+  document.title = profilMitra.namaMitra;
 
   const isMitraHasFoto = () => {
     if (profilMitra) {
@@ -99,7 +100,6 @@ const Productpage = ({ id, name, description, price, imageUrl }) => {
     //     setDataMitra(mitraDetail);
     // }
     getMitraData();
-    //document.title = "Produk";
 
     axios
       .get(`/api/product/read/${idMitra}`)

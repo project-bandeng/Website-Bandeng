@@ -10,6 +10,7 @@ import axios from "axios";
 import "../register.css"
 
 const Registerpage = () => {
+    document.title = "Register Admin";
     const [username, setUsername] = useState("");
     const [alamat, setAlamat] = useState("");
     const [email, setEmail] = useState("");

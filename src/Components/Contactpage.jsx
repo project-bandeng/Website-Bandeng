@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const Contactpage = () => {
+    document.title = 'Contact Us';
     const [category, setCategory] = useState("Umum"); // State untuk kategori
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");

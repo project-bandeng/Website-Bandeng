@@ -1,35 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import useLocalStorageUserData from "../hooks/useLocalStorageUserData";
-import useBackendURLTranslator from "../hooks/useBackendURLTranslator";
-import SearchBar from "./SearchBar";
-import "../App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Produk from "../Image/Produk.jpg";
-import axios from "../service/axios";
-import useDataFilter from "../hooks/useDataFilter";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import useLocalStorageUserData from '../hooks/useLocalStorageUserData';
+import useBackendURLTranslator from '../hooks/useBackendURLTranslator';
+import SearchBar from './SearchBar';
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Produk from '../Image/Produk.jpg';
+import axios from '../service/axios';
+import useDataFilter from '../hooks/useDataFilter';
 
 const Produkcrud = () => {
+  document.title = "Kelola Produk";
   const navigate = useNavigate();
   const dataUser = useLocalStorageUserData();
   const convertImage = useBackendURLTranslator();
   const searchData = useDataFilter();
 
   const [statusDataOrigin, setStatusDataOrigin] = useState(0); //0 dari server 1 dari local
-  const [action, setAction] = useState("");
-  const [productId, setProductId] = useState("");
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productStok, setProductStok] = useState("");
-  const [productWeight, setProductWeight] = useState("");
-  const [productDesc, setProductDesc] = useState("");
-  const [productLink, setProductLink] = useState("");
+  const [action, setAction] = useState('');
+  const [productId, setProductId] = useState('');
+  const [productName, setProductName] = useState('');
+  const [productPrice, setProductPrice] = useState('');
+  const [productStok, setProductStok] = useState('');
+  const [productWeight, setProductWeight] = useState('');
+  const [productDesc, setProductDesc] = useState('');
+  const [productLink, setProductLink] = useState('');
   const [productImage, setProductImage] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("products");
+  const [activeMenu, setActiveMenu] = useState('products');
   const [productsPrev, setProductsPrev] = useState([]);
   const [products, setProducts] = useState([]);
-  const [textSearch, setTextSearch] = useState("");
+  const [textSearch, setTextSearch] = useState('');
 
   useEffect(() => {
     if (textSearch.length === 0 && productsPrev.length !== 0) {
@@ -46,7 +47,7 @@ const Produkcrud = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    let filteredProduk = searchData(productsPrev, textSearch, "nmProduk");
+    let filteredProduk = searchData(productsPrev, textSearch, 'nmProduk');
     setProducts(filteredProduk);
   };
 
@@ -75,7 +76,7 @@ const Produkcrud = () => {
 
     axios
       .post(`/api/product/${id}`, formData, {
-        headers: { "Content-Type": "multipart/formdata" },
+        headers: { 'Content-Type': 'multipart/formdata' },
       })
       .then((res) => {
         console.log(res);
@@ -113,7 +114,7 @@ const Produkcrud = () => {
 
     axios
       .post(`/api/product/edit/${id}`, formData, {
-        headers: { "Content-Type": "multipart/formdata" },
+        headers: { 'Content-Type': 'multipart/formdata' },
       })
       .then((res) => {
         console.log(res);
@@ -156,18 +157,18 @@ const Produkcrud = () => {
   };
 
   const resetInputState = () => {
-    setProductName("");
-    setProductPrice("");
-    setProductStok("");
-    setProductWeight("");
-    setProductDesc("");
+    setProductName('');
+    setProductPrice('');
+    setProductStok('');
+    setProductWeight('');
+    setProductDesc('');
     setProductImage(null);
-    setProductLink("");
+    setProductLink('');
   };
 
   const handleEditProduct = (id) => {
     resetInputState();
-    setAction("Edit Produk");
+    setAction('Edit Produk');
     const editedProduct = products.find((product) => product.id === id);
     console.log(editedProduct);
     if (editedProduct) {
@@ -184,21 +185,12 @@ const Produkcrud = () => {
   };
 
   const updateProductsState = (data) => {
-    const updatedProducts = products.map((product) =>
-      product.id === data.id ? data : product
-    );
+    const updatedProducts = products.map((product) => (product.id === data.id ? data : product));
     setProducts(updatedProducts);
   };
 
   const handleUpdateProduct = () => {
-    if (
-      productName &&
-      productPrice &&
-      productStok &&
-      productDesc &&
-      productWeight &&
-      productId
-    ) {
+    if (productName && productPrice && productStok && productDesc && productWeight && productId) {
       // const updatedProducts = products.map((product) =>
       //     product.id === editMode
       //         ? {
@@ -229,7 +221,7 @@ const Produkcrud = () => {
 
       resetInputState();
     } else {
-      alert("Hrap isi semua form");
+      alert('Hrap isi semua form');
     }
   };
 
@@ -246,12 +238,12 @@ const Produkcrud = () => {
 
   const handleLogout = () => {
     axios
-      .get("/api/v2/logout-mitra")
+      .get('/api/v2/logout-mitra')
       .then((res) => {
         console.log(res);
-        localStorage.removeItem("data-user");
-        localStorage.removeItem("auth-token");
-        navigate("/login");
+        localStorage.removeItem('data-user');
+        localStorage.removeItem('auth-token');
+        navigate('/login');
       })
       .catch((err) => {
         console.log(err);
@@ -264,59 +256,32 @@ const Produkcrud = () => {
 
   return (
     <div className="container-news">
-      <div className="row" style={{ height: "630px" }}>
-        <nav
-          className="col-md-2 d-none d-md-block sidebar rounded-4 "
-          style={{ backgroundColor: "#0F75BD" }}
-        >
+      <div className="row" style={{ height: 'auto' }}>
+        <nav className="col-md-2 d-none d-md-block sidebar rounded-4 pe-0 ps-4" style={{ backgroundColor: '#0F75BD' }}>
+          <div className="d-flex flex-column justify-content-between h-100">
           <div className="position-sticky">
-            <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
-              Main Menu
-            </h5>
-            <ul className="nav flex-column">
-              <li
-                className={`nav-item ${
-                  activeMenu === "profil" ? "active" : ""
-                }`}
-              >
-                <a
-                  className={`nav-link text-dark ${
-                    activeMenu === "profil" ? "active-link" : "/profil"
-                  }`}
-                  href="/profil"
-                  onClick={() => setActiveMenu("profil")}
-                >
+            <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">Main Menu</h5>
+            <ul className="nav flex-column gap-2">
+              <li className={`nav-item ${activeMenu === 'profil' ? 'active' : ''}`}>
+                <a className={`nav-link text-white rounded-start-3 hovering-menu  ${activeMenu === 'profil' ? 'active-link' : '/profil'}`} href="/profil" onClick={() => setActiveMenu('profil')}>
+                  <i class="bi bi-person-fill me-2"></i>
                   PROFILE
                 </a>
               </li>
-              <li
-                className={`nav-item ${
-                  activeMenu === "products" ? "active" : ""
-                }`}
-              >
-                <a
-                  className={`nav-link text-dark ${
-                    activeMenu === "products" ? "active-link" : "/products"
-                  }`}
-                  href="/products"
-                  onClick={() => setActiveMenu("products")}
-                >
+              <li className={`nav-item rounded-start-3 ${activeMenu === 'products' ? 'active' : ''}`}>
+                <a className={`nav-link text-primary ${activeMenu === 'products' ? 'active-link' : '/products'}`} href="/crudproduk" onClick={() => setActiveMenu('products')}>
+                  <i class="bi bi-bag-fill me-2"></i>
                   PRODUCTS
                 </a>
               </li>
-              <li
-                className={`nav-item ${
-                  activeMenu === "products" ? "active" : ""
-                }`}
-              >
-                <div
-                  className={`nav-link text-dark`}
-                  onClick={() => handleLogout()}
-                >
-                  Logout
-                </div>
-              </li>
             </ul>
+          </div>
+          <div className="logout mt-auto mb-3">
+              <Link className={`nav-link text-white nav-item px-3 py-2 hovering-menu rounded-start-3`} onClick={() => handleLogout()} style={{ cursor: 'pointer' }}>
+                <i class="bi bi-door-open-fill me-2"></i>
+                LOGOUT
+              </Link>
+            </div>
           </div>
         </nav>
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -334,117 +299,57 @@ const Produkcrud = () => {
                         <label htmlFor="product-image" className="form-label">
                           Gambar Produk
                         </label>
-                        <input
-                          type="file"
-                          className="form-control"
-                          id="product-image"
-                          accept="image/*"
-                          onChange={handleImageUpload}
-                          required
-                        />
+                        <input type="file" className="form-control" id="product-image" accept="image/*" onChange={handleImageUpload} required />
                       </div>
                       <div className="mb-3">
                         <label htmlFor="product-name" className="form-label">
                           Nama Produk
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="product-name"
-                          value={productName}
-                          onChange={(e) => setProductName(e.target.value)}
-                          required
-                        />
+                        <input type="text" className="form-control" id="product-name" value={productName} onChange={(e) => setProductName(e.target.value)} required />
                       </div>
                       <div className="mb-3">
                         <label htmlFor="product-price" className="form-label">
                           Harga Produk
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="product-price"
-                          value={productPrice}
-                          onChange={(e) => setProductPrice(e.target.value)}
-                          required
-                        />
+                        <input type="text" className="form-control" id="product-price" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} required />
                       </div>
                       <div className="mb-3">
                         <label htmlFor="product-stok" className="form-label">
                           Stok Produk
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="product-stok"
-                          value={productStok}
-                          onChange={(e) => setProductStok(e.target.value)}
-                          required
-                        />
+                        <input type="text" className="form-control" id="product-stok" value={productStok} onChange={(e) => setProductStok(e.target.value)} required />
                       </div>
                       <div className="mb-3">
                         <label htmlFor="product-stok" className="form-label">
                           Berat Produk
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="product-berat"
-                          value={productWeight}
-                          onChange={(e) => setProductWeight(e.target.value)}
-                          required
-                        />
+                        <input type="text" className="form-control" id="product-berat" value={productWeight} onChange={(e) => setProductWeight(e.target.value)} required />
                       </div>
                       <div className="mb-3">
                         <label htmlFor="product-link" className="form-label">
                           Link Produk (shopee)
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="product-link"
-                          value={productLink}
-                          onChange={(e) => setProductLink(e.target.value)}
-                          required
-                        />
+                        <input type="text" className="form-control" id="product-link" value={productLink} onChange={(e) => setProductLink(e.target.value)} required />
                       </div>
                       <div className="mb-3">
                         <label htmlFor="product-stok" className="form-label">
                           Deskrisi Produk
                         </label>
-                        <textarea
-                          className="form-control"
-                          id="product-berat"
-                          value={productDesc}
-                          onChange={(e) => setProductDesc(e.target.value)}
-                          required
-                        />
+                        <textarea className="form-control" id="product-berat" value={productDesc} onChange={(e) => setProductDesc(e.target.value)} required />
                       </div>
-                      <button
-                        className="btn btn-primary me-2"
-                        onClick={
-                          action === "Tambah Produk"
-                            ? handleAddProduct
-                            : handleUpdateProduct
-                        }
-                      >
+                      <button className="btn btn-primary me-2" onClick={action === 'Tambah Produk' ? handleAddProduct : handleUpdateProduct}>
                         Simpan Perubahan
                       </button>
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => setEditMode(false)}
-                      >
+                      <button className="btn btn-secondary" onClick={() => setEditMode(false)}>
                         Batal
                       </button>
                     </>
                   ) : (
                     <>
-                      <h5 className="card-title d-inline">Daftar Produk</h5>
-                      <SearchBar
-                        setTextToSearch={setTextSearch}
-                        textToSearch={textSearch}
-                        handleSearch={handleSearch}
-                      />
+                      <div className="d-flex justify-content-between align-items-center mb-4">
+                        <h5 className="card-title">Daftar Produk</h5>
+                        <SearchBar setTextToSearch={setTextSearch} textToSearch={textSearch} handleSearch={handleSearch} />
+                      </div>
                       <table className="table">
                         <thead>
                           <tr>
@@ -460,15 +365,11 @@ const Produkcrud = () => {
                             <tr key={product.id}>
                               <td>
                                 <img
-                                  src={
-                                    product?.foto_produk
-                                      ? convertImage(product.foto_produk)
-                                      : ""
-                                  }
+                                  src={product?.foto_produk ? convertImage(product.foto_produk) : ''}
                                   alt={product.name}
                                   style={{
-                                    maxWidth: "100px",
-                                    maxHeight: "100px",
+                                    maxWidth: '100px',
+                                    maxHeight: '100px',
                                   }}
                                 />
                               </td>
@@ -476,18 +377,10 @@ const Produkcrud = () => {
                               <td>{product.hrgProduk}</td>
                               <td>{product.stok}</td>
                               <td>
-                                <button
-                                  className="btn btn-primary me-2"
-                                  onClick={() => handleEditProduct(product.id)}
-                                >
+                                <button className="btn btn-primary me-2" onClick={() => handleEditProduct(product.id)}>
                                   Edit
                                 </button>
-                                <button
-                                  className="btn btn-danger"
-                                  onClick={() =>
-                                    handleDeleteProduct(product.id)
-                                  }
-                                >
+                                <button className="btn btn-danger" onClick={() => handleDeleteProduct(product.id)}>
                                   Hapus
                                 </button>
                               </td>
@@ -500,7 +393,7 @@ const Produkcrud = () => {
                           className="btn btn-primary"
                           onClick={() => {
                             setEditMode(true);
-                            setAction("Tambah Produk");
+                            setAction('Tambah Produk');
                             resetInputState();
                           }}
                         >

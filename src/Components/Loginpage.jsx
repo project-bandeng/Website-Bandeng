@@ -9,6 +9,7 @@ import "../login.css";
 import { Ring } from "@uiball/loaders";
 
 const Loginpage = () => {
+  document.title = "Login Mitra";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);

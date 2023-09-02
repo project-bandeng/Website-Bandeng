@@ -7,6 +7,7 @@ import forgotIcon from "../Image/forgot.png";
 import Swal from "sweetalert2";
 
 const Forgotpasspage = () => {
+    document.title = 'Forgot Password';
     const [email, setEmail] = useState("");
 
     function handleFPass() {

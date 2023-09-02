@@ -24,38 +24,7 @@ import Footer from "./Homepage/footer";
 import LoadingComponent from "./LoadingComponent";
 
 const Homepage = () => {
-  const elements = [
-    {
-      fotoMitra: Produk,
-      namaMitra: "Bandeng Juwana",
-      link: "",
-    },
-    {
-      fotoMitra: Produk,
-      namaMitra: "Bandeng Juwana",
-      link: "",
-    },
-    {
-      fotoMitra: Produk,
-      namaMitra: "Bandeng Juwana",
-      link: "",
-    },
-    {
-      fotoMitra: Produk,
-      namaMitra: "Bandeng Juwana",
-      link: "",
-    },
-    {
-      fotoMitra: Produk,
-      namaMitra: "Bandeng Juwana",
-      link: "",
-    },
-    {
-      fotoMitra: Produk,
-      namaMitra: "Bandeng Juwana",
-      link: "",
-    },
-  ];
+  document.title = "Home";
 
   const { listMitra, setListMitra } = useContext(MitraProdukContext);
   const [mitraDataLocal, setMitraDataLocal] = useState([]);

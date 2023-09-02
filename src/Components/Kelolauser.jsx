@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar";
 import useDataFilter from "../hooks/useDataFilter";
 
 const Kelolauser = () => {
+  document.title = "Kelola User";
   const [users, setUsers] = useState([
     {
       id: 1,

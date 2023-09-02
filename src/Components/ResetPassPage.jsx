@@ -7,6 +7,7 @@ import forgotIcon from "../Image/forgot.png";
 import Swal from "sweetalert2";
 
 const ResetPassPage = () => {
+    document.title = "Reset Password";
     const [password, setPassword] = useState("");
     const [conPassword, setConPassword] = useState("");
     const [params, setParams] = useSearchParams();

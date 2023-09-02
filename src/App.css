@@ -77,7 +77,13 @@
 .active-link {
   color: #138AE0; /* Warna teks untuk menu yang aktif */
 }
-
+.hovering-menu {
+  transition: color 0.5s ease-in, background-color 0.5s ease-out !important;
+}
+.hovering-menu:hover {
+  color: #0F75BD !important;
+  background-color: #FFFFFF;
+}
 .carousel-item::before {
   position: absolute;
   content: '';

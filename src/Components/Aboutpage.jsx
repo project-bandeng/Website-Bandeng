@@ -13,11 +13,12 @@ import Footer from "./Homepage/footer";
 import LoadingComponent from "./LoadingComponent";
 
 const NewsCard = ({ data }) => {
+  document.title = "About Us";
   let imageConverter = useBackendURLTranslator();
   return (
     <div className="col-sm-4">
       <Link to={"/news"} style={{ textDecoration: "none" }}>
-        <Card style={{ width: "18rem", height: "25rem" }}>
+        <Card style={{ width: "18rem", height: "21rem" }}>
           <Card.Img
             variant="top"
             src={imageConverter(data.foto_article)}

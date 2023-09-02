@@ -22,6 +22,7 @@ const NewsItem = () => {
 };
 
 const Newspage = () => {
+  document.title = 'News';
   const [newsList, setNewsList] = useState([]);
   const [activeNews, setActiveNews] = useState({});
   const [newsId, setNewsID] = useState();
