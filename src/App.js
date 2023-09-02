@@ -1,6 +1,11 @@
 // App.js
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import About from "./Pages/About";
 import Home from "./Pages/Home";
@@ -53,8 +58,6 @@ const App = () => {
           <Route path="/login/reset-password" element={<ResetPassPage />} />
           <Route path="/Profil" element={<Profil />} />
           <Route path="/crudproduk" element={<Crudproduct />} />
-          <Route path="/crudartikel" element={<Kelolaartikel />} />
-          <Route path="/cruduser" element={<Kelolauser />} />
           <Route path="/user" element={<User />} />
           <Route path="/artikel" element={<Artikel />} />
         </Routes>
