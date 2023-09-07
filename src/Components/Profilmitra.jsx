@@ -1,233 +1,245 @@
-import React, { useState, useEffect } from "react";
-import { Navbar, Nav, NavDropdown} from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import axios from "../service/axios";
-import config from "../config";
-import "../App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from '../service/axios';
+import config from '../config';
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // TO DO :
 // TAMBAHIN LOADING
 // TAMBAHIN NOTIFIKASI BERHASIL UPDATE
 
 const Profilmitra = () => {
-    const [name, setName] = useState("");
-    const [alamat, setAlamat] = useState("");
-    const [tgl_lahir, setTgl] = useState("");
-    const [jenis_kel, setKelamin] = useState("");
-    const [email, setEmail] = useState("");
-    const [no_hp, setNomer] = useState("");
-    const [fotoMitra, setFotoMitra] = useState(
-        "https://via.placeholder.com/150"
-    );
-    const [file, setFile] = useState(null);
-    const [editMode, setEditMode] = useState(false);
-    const [activeMenu, setActiveMenu] = useState("profil");
-    const navigate = useNavigate();
+  document.title = "Profil Mitra"; 
+  const [name, setName] = useState('');
+  const [alamat, setAlamat] = useState('');
+  const [tgl_lahir, setTgl] = useState('');
+  const [jenis_kel, setKelamin] = useState('');
+  const [email, setEmail] = useState('');
+  const [no_hp, setNomer] = useState('');
+  const [fotoMitra, setFotoMitra] = useState('https://via.placeholder.com/150');
+  const [file, setFile] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [activeMenu, setActiveMenu] = useState('profil');
+  const navigate = useNavigate();
 
-    const handleEdit = () => {
-        setEditMode(true);
+  const handleEdit = () => {
+    setEditMode(true);
+  };
+
+  const handleOnChangeFoto = (e) => {
+    console.log(e.target.files[0]);
+    if (e.target.files[0].size > 5024000) {
+      //TODO : GANTI PAKE SWEETALERT
+      alert('File tidak boleh lebih besar dari 5MB!');
+      return;
+    }
+    setFile(e.target.files[0]);
+    setFotoMitra(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleSavePhoto = () => {
+    if (!file) return console.log('Tidak ada foto');
+    const formData = new FormData();
+    let id = getIDFromLocalStorage();
+    formData.append('foto_mitra', file);
+    axios
+      .post(`/api/v1/mitra/edit-foto/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleSave = () => {
+    setEditMode(false);
+
+    let data = {
+      namaLengkap: name,
+      alamatMitra: alamat,
+      tglLahir: tgl_lahir,
+      jeniskel: jenis_kel,
+      no_tlp: no_hp,
+      foto_mitra: null,
     };
 
-    const handleOnChangeFoto = (e) => {
-        console.log(e.target.files[0]);
-        if (e.target.files[0].size > 5024000) {
-            //TODO : GANTI PAKE SWEETALERT
-            alert("File tidak boleh lebih besar dari 5MB!");
-            return;
-        }
-        setFile(e.target.files[0]);
-        setFotoMitra(URL.createObjectURL(e.target.files[0]));
-    };
+    console.log(data);
+    let id = getIDFromLocalStorage();
 
-    const handleSavePhoto = () => {
-        if (!file) return console.log("Tidak ada foto");
-        const formData = new FormData();
-        let id = getIDFromLocalStorage();
-        formData.append("foto_mitra", file);
-        axios
-            .post(`/api/v1/mitra/edit-foto/${id}`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+    axios
+      .post(`/api/v1/mitra/edit/${id}`, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    const handleSave = () => {
-        setEditMode(false);
+    handleSavePhoto();
+  };
 
-        let data = {
-            namaLengkap: name,
-            alamatMitra: alamat,
-            tglLahir: tgl_lahir,
-            jeniskel: jenis_kel,
-            no_tlp: no_hp,
-            foto_mitra: null,
-        };
-
-        console.log(data);
-        let id = getIDFromLocalStorage();
-
-        axios
-            .post(`/api/v1/mitra/edit/${id}`, data)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        handleSavePhoto();
-    };
-
-    const handleCancel = () => {
-        setEditMode(false);
-    };
-
-    const handleLogout = () => {
-        axios
-          .get("/api/v2/logout-mitra")
-          .then((res) => {
-            console.log(res);
-            localStorage.removeItem("data-user");
-            localStorage.removeItem("auth-token");
-            navigate("/login");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      };
+  const handleCancel = () => {
+    setEditMode(false);
+  };
 
     function getIDFromLocalStorage() {
         return JSON.parse(localStorage.getItem("data-user"))?.id;
     }
 
-    function setPhotoFromResponse(url) {
-        if (!url) {
-            setFotoMitra("https://via.placeholder.com/150");
-            return;
-        }
-
-        //DIGANTI SESUAL ALAMAT BACKEND
-        const BACKEND_DOMAIN = config.BACKEND_URL;
-        let path = BACKEND_DOMAIN + url;
-        setFotoMitra(path);
-        console.log(path);
+  function setPhotoFromResponse(url) {
+    if (!url) {
+      setFotoMitra('https://via.placeholder.com/150');
+      return;
     }
 
-    useEffect(() => {
-        if (!localStorage.getItem("auth-token")) {
-            return navigate("/login");
-        }
-        let idUser = getIDFromLocalStorage();
-        axios
-            .get(`/api/v1/mitra/read/${idUser}`)
-            .then((res) => {
-                //set State berdasarkan response dari server
-                let data = res.data.data;
-                console.log(data);
-                setName(data.namaLengkap || "");
-                setAlamat(data.alamatMitra || "");
-                setTgl(data.tglLahir || "");
-                setKelamin(data.jeniskel || "");
-                setEmail(data.email || "");
-                setNomer(data.no_tlp || "");
-                setPhotoFromResponse(data["foto_mitra"]);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    //DIGANTI SESUAL ALAMAT BACKEND
+    const BACKEND_DOMAIN = config.BACKEND_URL;
+    let path = BACKEND_DOMAIN + url;
+    setFotoMitra(path);
+    console.log(path);
+  }
+
+  const handleLogout = () => {
+    axios
+      .get('/api/v2/logout-mitra')
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem('data-user');
+        localStorage.removeItem('auth-token');
+        navigate('/login');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    if (!localStorage.getItem('auth-token')) {
+      return navigate('/login');
+    }
+    let idUser = getIDFromLocalStorage();
+    axios
+      .get(`/api/v1/mitra/read/${idUser}`)
+      .then((res) => {
+        //set State berdasarkan response dari server
+        let data = res.data.data;
+        console.log(data);
+        setName(data.namaLengkap || '');
+        setAlamat(data.alamatMitra || '');
+        setTgl(data.tglLahir || '');
+        setKelamin(data.jeniskel || '');
+        setEmail(data.email || '');
+        setNomer(data.no_tlp || '');
+        setPhotoFromResponse(data['foto_mitra']);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
     return (
-        <div className="container-fluid">
-        <div className="row">
-        <nav className="col-md-2 col-12 d-md-block sidebar bg-primary rounded-4">
-        <div className="position-sticky">
-        <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
-                  Main Menu
-                </h5>
-        <ul className="nav flex-column">
-        <li className="nav-item">
-          <NavDropdown
-            title="Menu"
-            className="nav-link text-light d-md-none"
-          >
-            <NavDropdown.Item
-              className={`nav-link ${
-                activeMenu === "profil" ? "active-link" : ""
-              }`}
-              onClick={() => setActiveMenu("profil")}
-            >
-              <a className="text-decoration-none text-dark" href="/profil">
-                PROFILE
-              </a>
-            </NavDropdown.Item>
-            <NavDropdown.Item
-              className={`nav-link ${
-                activeMenu === "products" ? "active-link" : ""
-              }`}
-              onClick={() => setActiveMenu("products")}
-            >
-              <a className="text-decoration-none text-dark" href="/products">
-                PRODUCTS
-              </a>
-            </NavDropdown.Item>
-            <NavDropdown.Item
-              className="nav-link"
-              onClick={handleLogout}
-            >
-              Logout
-            </NavDropdown.Item>
-          </NavDropdown>
-        </li>
-        <li className={`nav-item text-white ${activeMenu === "profil" ? "active" : ""}`}>
-          <Nav.Link
-            className={`nav-link text-white d-none d-md-block ${
-              activeMenu === "profil" ? "active-link" : ""
-            }`}
-            href="/profil"
-            onClick={() => setActiveMenu("profil")}
-          >
-              <a className={`text-decoration-none ${
-                activeMenu === "profil" ? "text-dark" : "text-dark-hover"
-              }`} href="/profil">
-                PROFILE
-              </a>
-          </Nav.Link>
-        </li>
-        <li className={`nav-item text-white ${activeMenu === "products" ? "active" : ""}`}>
-            <Nav.Link
-            className={`nav-link text-white d-none d-md-block ${
-            activeMenu === "products" ? "active-link" : ""
-            }`}
-            href="/crudproduk"
-            onClick={() => setActiveMenu("products")}
-        >
-            <a className={`text-decoration-none text-white ${
-                activeMenu === "products" ? "text-dark" : "text-dark-hover"
-            }`} href="/crudproduk">
-                PRODUCTS
-            </a>
-        </Nav.Link>
-        </li>
-        <li className="nav-item">
-          <Nav.Link
-            className="nav-link text-light d-none d-md-block"
-            onClick={handleLogout}
-          >
-            Logout
-          </Nav.Link>
-        </li>
-        </ul>
-        </div>
-        </nav>
+        <div className="container-news">
+            <div className="row"  style={{height: '630px'}}>
+                <nav
+                    className="col-md-2 d-none d-md-block sidebar rounded-4 "
+                    style={{ backgroundColor: "#0F75BD" }}
+                >
+                    <div className="position-sticky">
+                        <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
+                            Main Menu
+                        </h5>
+                        <ul className="nav flex-column">
+                            <li
+                                className={`nav-item ${
+                                    activeMenu === "profil" ? "active" : ""
+                                }`}
+                            >
+                                <a
+                                    className={`nav-link text-dark ${
+                                        activeMenu === "profil"
+                                            ? "active-link"
+                                            : "/profil"
+                                    }`}
+                                    href="/profil"
+                                    onClick={() => setActiveMenu("profil")}
+                                >
+                                    PROFILE
+                                </a>
+                            </li>
+                            <li
+                                className={`nav-item ${
+                                    activeMenu === "products" ? "active" : ""
+                                }`}
+                            >
+                                <a
+                                    className={`nav-link text-dark ${
+                                        activeMenu === "products"
+                                            ? "active-link"
+                                            : "/crudproduk"
+                                    }`}
+                                    href="/crudproduk"
+                                    onClick={() => setActiveMenu("products")}
+                                >
+                                    PRODUCTS
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div className="row">
+                    <div
+                        className="col-md-2 d-none d-md-block sidebar rounded-4 "
+                        style={{ backgroundColor: "#0F75BD" }}
+                    >
+                        <div className="position-sticky">
+                            <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
+                                Main Menu
+                            </h5>
+                            <ul className="nav flex-column">
+                                <li
+                                    className={`nav-item ${
+                                        activeMenu === "beranda" ? "active" : ""
+                                    }`}
+                                >
+                                    <a
+                                        className={`nav-link text-dark ${
+                                            activeMenu === "beranda"
+                                                ? "active-link"
+                                                : ""
+                                        }`}
+                                        href="#"
+                                        onClick={() => setActiveMenu("beranda")}
+                                    >
+                                        Beranda
+                                    </a>
+                                </li>
+                                <li
+                                    className={`nav-item ${
+                                        activeMenu === "profil" ? "active" : ""
+                                    }`}
+                                >
+                                    <a
+                                        className={`nav-link text-dark ${
+                                            activeMenu === "profil"
+                                                ? "active-link"
+                                                : ""
+                                        }`}
+                                        href="#"
+                                        onClick={() => setActiveMenu("profil")}
+                                    >
+                                        Profil Anda
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                         <div className="pt-3 pb-2 mb-3">
                             <h1>Profil Akun Anda</h1>
@@ -436,6 +448,7 @@ const Profilmitra = () => {
                     </main>
                 </div>
             </div>
+        </div>
     );
 };
 export default Profilmitra;

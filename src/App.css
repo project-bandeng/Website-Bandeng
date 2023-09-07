@@ -15,9 +15,6 @@
   justify-content: center;
 }
 
-.circle-icon {
-  height: 100px;
-}
 .container-circle {
   justify-content: center;
 }
@@ -62,7 +59,7 @@
   --bs-gutter-x: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  padding-top: 80px;
+  padding-top: 70px;
 }
 .nav-item {
   font-size: 20px !important;
@@ -73,11 +70,20 @@
 .nav-item.active {
   background-color: #FFFFFF;
 }
-
+.nav-foot {
+  font-size: 16px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
 .active-link {
   color: #138AE0; /* Warna teks untuk menu yang aktif */
 }
-
+.hovering-menu {
+  transition: color 0.5s ease-in, background-color 0.5s ease-out !important;
+}
+.hovering-menu:hover {
+  color: #0F75BD !important;
+  background-color: #FFFFFF;
+}
 .carousel-item::before {
   position: absolute;
   content: '';
@@ -212,10 +218,13 @@
   height: 4px; /* Lebar garis */
   background-color: #007bff; /* Warna garis bawah */
 }
-
 .product-price {
   font-weight: 600;
   font-size: 20px;
+}
+
+.info-mitra {
+  background: linear-gradient(#41A1E5, #0F75BD);
 }
 @media (max-width: 1100px) {
   .nav-item {
@@ -399,14 +408,12 @@
   .section-about-container {
     flex-direction: column;
   }
-  
   .container-about-head {
     justify-content: center;
   }
   .container-about-card {
     flex-direction: column;
   }
-  
   .benefit-desc-container {
     flex-direction: column;
   }  
@@ -415,4 +422,9 @@
 /* Gaya untuk perubahan warna teks pada hover */
 .text-dark-hover:hover {
   color: black;
+  .maps-krobokan {
+    width: 350px;
+    height: 250px;
+  }
+  
 }

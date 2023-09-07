@@ -8,18 +8,16 @@ export default function SearchBar({
     <form className="d-inline-flex ms-5 ms-md-0" onSubmit={handleSearch}>
       <div className="input-group">
         <input
-          className="form-control me-2"
+          className="form-control"
           type="search"
           placeholder={placeholder}
           aria-label="Search"
           value={textToSearch}
           onChange={(e) => setTextToSearch(e.target.value)}
         />
-        <div className="input-group-append">
-          <button className="btn btn-primary" type="submit">
+        <button className="btn btn-secondary rounded-end text-white" type="submit" style={{fontWeight: "bold"}}>
             Cari
-          </button>
-        </div>
+        </button>
       </div>
     </form>
   );

@@ -6,8 +6,15 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SearchBar from "./SearchBar";
 import useDataFilter from "../hooks/useDataFilter";
+import Sidebar from "./Sidebar";
+
+const dataLink = [
+  { path: "/user", name: "Data User", icon: "bi-person-fill" },
+  { path: "/artikel", name: "Artikel", icon: "bi-person-fill" },
+];
 
 const Kelolauser = () => {
+  document.title = "Kelola User";
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -276,6 +283,63 @@ const Kelolauser = () => {
     </ul>
     </div>
     </nav>
+    <div className="container-news">
+      <div className="row" style={{ height: "630px" }}>
+        {/* <nav
+          className="col-md-2 d-none d-md-block sidebar rounded-4 "
+          style={{ backgroundColor: "#0F75BD" }}
+        >
+          <div className="position-sticky">
+            <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
+              Main Menu
+            </h5>
+            <ul className="nav flex-column">
+              <li
+                className={`nav-item ${
+                  activeMenu === "datauser" ? "active" : ""
+                }`}
+              >
+                <a
+                  className={`nav-link text-dark ${
+                    activeMenu === "datauser" ? "active-link" : "/user"
+                  }`}
+                  href="/user"
+                  onClick={() => setActiveMenu("datauser")}
+                >
+                  DATA USER
+                </a>
+              </li>
+              <li
+                className={`nav-item ${
+                  activeMenu === "artikel" ? "active" : ""
+                }`}
+              >
+                <a
+                  className={`nav-link text-dark ${
+                    activeMenu === "artikel" ? "active-link" : "/artikel"
+                  }`}
+                  href="/artikel"
+                  onClick={() => setActiveMenu("artikel")}
+                >
+                  ARTICLE
+                </a>
+              </li>
+              <li
+                className={`nav-item ${
+                  activeMenu === "products" ? "active" : ""
+                }`}
+              >
+                <div
+                  className={`nav-link text-dark`}
+                  onClick={() => handleLogout()}
+                >
+                  Logout
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav> */}
+        <Sidebar dataLink={dataLink} handleLogout={handleLogout} />
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="pt-3 pb-2 mb-3">
             <h1>Kelola User</h1>

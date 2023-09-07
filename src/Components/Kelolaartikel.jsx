@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import useDataFilter from "../hooks/useDataFilter";
 
 const Kelolaartikel = () => {
+  document.title = "Kelola Artikel";
   const [articles, setArticles] = useState([]);
   const [articlesBackup, setArticlesBackup] = useState([]);
   const [editMode, setEditMode] = useState(false);
