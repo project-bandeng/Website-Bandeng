@@ -5,11 +5,9 @@ import Navbar from "../Pages/Navbar";
 
 const MainNavbar = () => {
   const location = useLocation();
-<<<<<<< HEAD
-  const isLoginOrRegisterOrProdukcrudOrProfilmitraKelolauserKelolaartikel = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/crudproduk'|| location.pathname === '/profil'|| location.pathname === '/cruduser'|| location.pathname === '/artikel';
+  const isLoginOrRegisterOrProdukcrudOrProfilmitraKelolauserKelolaartikelForgotpassResetPassPageLoginAdminPage = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/crudproduk'|| location.pathname === '/profil'|| location.pathname === '/cruduser'|| location.pathname === '/artikel'|| location.pathname === '/login/forgot-password'|| location.pathname === '/login/reset-password'|| location.pathname === '/login/admin';
 
-  return !isLoginOrRegisterOrProdukcrudOrProfilmitraKelolauserKelolaartikel && <Navbar />;
-=======
+  return !isLoginOrRegisterOrProdukcrudOrProfilmitraKelolauserKelolaartikelForgotpassResetPassPageLoginAdminPage && <Navbar />;
 
   const excludeNavbar = [
     "/login",
@@ -35,7 +33,6 @@ const MainNavbar = () => {
     location.pathname === "/login" || location.pathname === "/register";
 
   return checkIsPathExcluded() && <Navbar />;
->>>>>>> 4086d2898e277d2eddd07a2d80e050ed415673f5
 };
 
 export default MainNavbar;

@@ -44,22 +44,12 @@ const ResetPassPage = () => {
     }
 
     return (
-        <div className="login-container container-fluid">
-            <div
-                className="row justify-content-center align-items-center mx-5"
-                style={{ height: "100vh" }}
-            >
-                <div
-                    className="col-md-5 bg-white d-flex justify-content-center rounded-start"
-                    style={{ padding: "2.0rem" }}
-                >
-                    <img
-                        src={Logo}
-                        alt="Logo D'Bandeng"
-                        className="img-fluid"
-                    />
-                </div>
-                <div className="col-md-5 bg-primary p-4 rounded-end">
+        <div className="login-container d-flex">
+        <div className="login-content">
+          <div className="logo-container">
+            <img src={Logo} alt="Logo D'Bandeng" className="img-fluid" />
+          </div>
+                <div className="form-container">
                     <img src={forgotIcon} alt="ForgotPass" />
                     <h1 className="h1 text-white fw-bolder text-center">
                         Reset Password
