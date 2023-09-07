@@ -410,6 +410,9 @@
   .benefit-desc-container {
     flex-direction: column;
   }  
+}
 
-  
+/* Gaya untuk perubahan warna teks pada hover */
+.text-dark-hover:hover {
+  color: black;
 }

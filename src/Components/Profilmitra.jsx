@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Navbar, Nav, NavDropdown} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "../service/axios";
 import config from "../config";
@@ -89,6 +90,20 @@ const Profilmitra = () => {
         setEditMode(false);
     };
 
+    const handleLogout = () => {
+        axios
+          .get("/api/v2/logout-mitra")
+          .then((res) => {
+            console.log(res);
+            localStorage.removeItem("data-user");
+            localStorage.removeItem("auth-token");
+            navigate("/login");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
     function getIDFromLocalStorage() {
         return JSON.parse(localStorage.getItem("data-user"))?.id;
     }
@@ -131,102 +146,88 @@ const Profilmitra = () => {
     }, []);
 
     return (
-        <div className="container-news">
-            <div className="row"  style={{height: '630px'}}>
-                <nav
-                    className="col-md-2 d-none d-md-block sidebar rounded-4 "
-                    style={{ backgroundColor: "#0F75BD" }}
-                >
-                    <div className="position-sticky">
-                        <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
-                            Main Menu
-                        </h5>
-                        <ul className="nav flex-column">
-                            <li
-                                className={`nav-item ${
-                                    activeMenu === "profil" ? "active" : ""
-                                }`}
-                            >
-                                <a
-                                    className={`nav-link text-dark ${
-                                        activeMenu === "profil"
-                                            ? "active-link"
-                                            : "/profil"
-                                    }`}
-                                    href="/profil"
-                                    onClick={() => setActiveMenu("profil")}
-                                >
-                                    PROFILE
-                                </a>
-                            </li>
-                            <li
-                                className={`nav-item ${
-                                    activeMenu === "products" ? "active" : ""
-                                }`}
-                            >
-                                <a
-                                    className={`nav-link text-dark ${
-                                        activeMenu === "products"
-                                            ? "active-link"
-                                            : "/crudproduk"
-                                    }`}
-                                    href="/crudproduk"
-                                    onClick={() => setActiveMenu("products")}
-                                >
-                                    PRODUCTS
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-
-                <div className="row">
-                    <div
-                        className="col-md-2 d-none d-md-block sidebar rounded-4 "
-                        style={{ backgroundColor: "#0F75BD" }}
-                    >
-                        <div className="position-sticky">
-                            <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
-                                Main Menu
-                            </h5>
-                            <ul className="nav flex-column">
-                                <li
-                                    className={`nav-item ${
-                                        activeMenu === "beranda" ? "active" : ""
-                                    }`}
-                                >
-                                    <a
-                                        className={`nav-link text-dark ${
-                                            activeMenu === "beranda"
-                                                ? "active-link"
-                                                : ""
-                                        }`}
-                                        href="#"
-                                        onClick={() => setActiveMenu("beranda")}
-                                    >
-                                        Beranda
-                                    </a>
-                                </li>
-                                <li
-                                    className={`nav-item ${
-                                        activeMenu === "profil" ? "active" : ""
-                                    }`}
-                                >
-                                    <a
-                                        className={`nav-link text-dark ${
-                                            activeMenu === "profil"
-                                                ? "active-link"
-                                                : ""
-                                        }`}
-                                        href="#"
-                                        onClick={() => setActiveMenu("profil")}
-                                    >
-                                        Profil Anda
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+        <div className="container-fluid">
+        <div className="row">
+        <nav className="col-md-2 col-12 d-md-block sidebar bg-primary rounded-4">
+        <div className="position-sticky">
+        <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
+                  Main Menu
+                </h5>
+        <ul className="nav flex-column">
+        <li className="nav-item">
+          <NavDropdown
+            title="Menu"
+            className="nav-link text-light d-md-none"
+          >
+            <NavDropdown.Item
+              className={`nav-link ${
+                activeMenu === "profil" ? "active-link" : ""
+              }`}
+              onClick={() => setActiveMenu("profil")}
+            >
+              <a className="text-decoration-none text-dark" href="/profil">
+                PROFILE
+              </a>
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              className={`nav-link ${
+                activeMenu === "products" ? "active-link" : ""
+              }`}
+              onClick={() => setActiveMenu("products")}
+            >
+              <a className="text-decoration-none text-dark" href="/products">
+                PRODUCTS
+              </a>
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              className="nav-link"
+              onClick={handleLogout}
+            >
+              Logout
+            </NavDropdown.Item>
+          </NavDropdown>
+        </li>
+        <li className={`nav-item text-white ${activeMenu === "profil" ? "active" : ""}`}>
+          <Nav.Link
+            className={`nav-link text-white d-none d-md-block ${
+              activeMenu === "profil" ? "active-link" : ""
+            }`}
+            href="/profil"
+            onClick={() => setActiveMenu("profil")}
+          >
+              <a className={`text-decoration-none ${
+                activeMenu === "profil" ? "text-dark" : "text-dark-hover"
+              }`} href="/profil">
+                PROFILE
+              </a>
+          </Nav.Link>
+        </li>
+        <li className={`nav-item text-white ${activeMenu === "products" ? "active" : ""}`}>
+            <Nav.Link
+            className={`nav-link text-white d-none d-md-block ${
+            activeMenu === "products" ? "active-link" : ""
+            }`}
+            href="/crudproduk"
+            onClick={() => setActiveMenu("products")}
+        >
+            <a className={`text-decoration-none text-white ${
+                activeMenu === "products" ? "text-dark" : "text-dark-hover"
+            }`} href="/crudproduk">
+                PRODUCTS
+            </a>
+        </Nav.Link>
+        </li>
+        <li className="nav-item">
+          <Nav.Link
+            className="nav-link text-light d-none d-md-block"
+            onClick={handleLogout}
+          >
+            Logout
+          </Nav.Link>
+        </li>
+        </ul>
+        </div>
+        </nav>
                     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                         <div className="pt-3 pb-2 mb-3">
                             <h1>Profil Akun Anda</h1>
@@ -435,7 +436,6 @@ const Profilmitra = () => {
                     </main>
                 </div>
             </div>
-        </div>
     );
 };
 export default Profilmitra;
