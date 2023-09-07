@@ -39,7 +39,7 @@ const Forgotpasspage = () => {
             <img src={Logo} alt="Logo D'Bandeng" className="img-fluid" />
           </div>
           <div className="form-container">
-                    <img src={forgotIcon} alt="ForgotPass" />
+                    <img src={forgotIcon} alt="ForgotPass" className="forgot pb-4"/>
                     <h1 className="h1 text-white fw-bolder text-center">
                         Reset Password
                     </h1>
