@@ -5,9 +5,6 @@ import Navbar from "../Pages/Navbar";
 
 const MainNavbar = () => {
   const location = useLocation();
-  const isLoginOrRegisterOrProdukcrudOrProfilmitraKelolauserKelolaartikelForgotpassResetPassPageLoginAdminPage = location.pathname === '/login' || location.pathname === '/register'|| location.pathname === '/crudproduk'|| location.pathname === '/profil'|| location.pathname === '/cruduser'|| location.pathname === '/artikel'|| location.pathname === '/login/forgot-password'|| location.pathname === '/login/reset-password'|| location.pathname === '/login/admin';
-
-  return !isLoginOrRegisterOrProdukcrudOrProfilmitraKelolauserKelolaartikelForgotpassResetPassPageLoginAdminPage && <Navbar />;
 
   const excludeNavbar = [
     "/login",

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Image/LogoLogin.png";
-import axios from "axios";
+import axios from "../service/axios";
 import Swal from "sweetalert2";
 import "../login.css";
 import { Ring } from "@uiball/loaders";

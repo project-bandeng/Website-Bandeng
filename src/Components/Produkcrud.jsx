@@ -1,14 +1,13 @@
-import React, { useState, useEffect, Link} from "react";
-import { Navbar, Nav, NavDropdown} from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import useLocalStorageUserData from "../hooks/useLocalStorageUserData";
-import useBackendURLTranslator from "../hooks/useBackendURLTranslator";
-import SearchBar from "./SearchBar";
-import "../App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Produk from "../Image/Produk.jpg";
-import axios from "../service/axios";
-import useDataFilter from "../hooks/useDataFilter";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import useLocalStorageUserData from '../hooks/useLocalStorageUserData';
+import useBackendURLTranslator from '../hooks/useBackendURLTranslator';
+import SearchBar from './SearchBar';
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Produk from '../Image/Produk.jpg';
+import axios from '../service/axios';
+import useDataFilter from '../hooks/useDataFilter';
 
 const Produkcrud = () => {
   document.title = "Kelola Produk";
@@ -256,88 +255,6 @@ const Produkcrud = () => {
   }, []);
 
   return (
-    <div className="container-fluid">
-    <div className="row">
-    <nav className="col-md-2 col-12 d-md-block sidebar bg-primary rounded-4">
-    <div className="position-sticky">
-    <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
-              Main Menu
-            </h5>
-    <ul className="nav flex-column">
-    <li className="nav-item">
-      <NavDropdown
-        title="Menu"
-        className="nav-link text-light d-md-none"
-      >
-        <NavDropdown.Item
-          className={`nav-link ${
-            activeMenu === "profil" ? "active-link" : ""
-          }`}
-          onClick={() => setActiveMenu("profil")}
-        >
-          <a className="text-decoration-none text-dark" href="/profil">
-            PROFILE
-          </a>
-        </NavDropdown.Item>
-        <NavDropdown.Item
-          className={`nav-link ${
-            activeMenu === "products" ? "active-link" : ""
-          }`}
-          onClick={() => setActiveMenu("products")}
-        >
-          <a className="text-decoration-none text-dark" href="/products">
-            PRODUCTS
-          </a>
-        </NavDropdown.Item>
-        <NavDropdown.Item
-          className="nav-link"
-          onClick={handleLogout}
-        >
-          Logout
-        </NavDropdown.Item>
-      </NavDropdown>
-    </li>
-    <li className={`nav-item text-white ${activeMenu === "profil" ? "active" : ""}`}>
-      <Nav.Link
-        className={`nav-link text-white d-none d-md-block ${
-          activeMenu === "profil" ? "active-link" : ""
-        }`}
-        href="/profil"
-        onClick={() => setActiveMenu("profil")}
-      >
-          <a className={`text-decoration-none text-white ${
-            activeMenu === "profil" ? "text-dark" : "text-dark-hover"
-          }`} href="/profil">
-            PROFILE
-          </a>
-      </Nav.Link>
-    </li>
-    <li className={`nav-item ${activeMenu === "products" ? "active" : ""}`}>
-      <Nav.Link
-        className={`nav-link text-light d-none d-md-block ${
-          activeMenu === "products" ? "active-link" : ""
-        }`}
-        href="/crudproduk"
-        onClick={() => setActiveMenu("products")}
-      >
-          <a className={`text-decoration-none ${
-            activeMenu === "products" ? "text-dark" : "text-dark-hover"
-          }`} href="/crudproduk">
-            PRODUCTS
-          </a>
-      </Nav.Link>
-    </li>
-    <li className="nav-item">
-      <Nav.Link
-        className="nav-link text-light d-none d-md-block"
-        onClick={handleLogout}
-      >
-        Logout
-      </Nav.Link>
-    </li>
-    </ul>
-    </div>
-    </nav>
     <div className="container-news">
       <div className="row" style={{ height: 'auto' }}>
         <nav className="col-md-2 d-none d-md-block sidebar rounded-4 pe-0 ps-4" style={{ backgroundColor: '#0F75BD' }}>
@@ -491,8 +408,6 @@ const Produkcrud = () => {
           </div>
         </main>
       </div>
-    </div>
-    </div>
     </div>
   );
 };

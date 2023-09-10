@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar, Nav, NavDropdown} from "react-bootstrap";
 import axios from "../service/axios";
 import useBackendURLTranslator from "../hooks/useBackendURLTranslator";
 import SearchBar from "./SearchBar";
@@ -213,88 +212,62 @@ const Kelolaartikel = () => {
   }, [textSearch]);
 
   return (
-    <div className="container-fluid">
-    <div className="row">
-    <nav className="col-md-2 col-12 d-md-block sidebar bg-primary rounded-4">
-    <div className="position-sticky">
-    <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
+    <div className="container-news">
+      <div className="row" style={{ height: "630px" }}>
+        <nav
+          className="col-md-2 d-none d-md-block sidebar rounded-4 "
+          style={{ backgroundColor: "#0F75BD" }}
+        >
+          <div className="position-sticky">
+            <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-dark">
               Main Menu
             </h5>
-    <ul className="nav flex-column">
-    <li className="nav-item">
-      <NavDropdown
-        title="Menu"
-        className="nav-link text-light d-md-none"
-      >
-        <NavDropdown.Item
-          className={`nav-link ${
-            activeMenu === "datauser" ? "active-link" : ""
-          }`}
-          onClick={() => setActiveMenu("datauser")}
-        >
-          <a className="text-decoration-none text-dark" href="/cruduser">
-            DATA USER
-          </a>
-        </NavDropdown.Item>
-        <NavDropdown.Item
-          className={`nav-link ${
-            activeMenu === "artikel" ? "active-link" : ""
-          }`}
-          onClick={() => setActiveMenu("artikel")}
-        >
-          <a className="text-decoration-none text-dark" href="/artikel">
-            ARTICLES
-          </a>
-        </NavDropdown.Item>
-        <NavDropdown.Item
-          className="nav-link"
-          onClick={handleLogout}
-        >
-          Logout
-        </NavDropdown.Item>
-      </NavDropdown>
-    </li>
-    <li className={`nav-item text-white ${activeMenu === "datauser" ? "active" : ""}`}>
-      <Nav.Link
-        className={`nav-link text-white d-none d-md-block ${
-          activeMenu === "datauser" ? "active-link" : ""
-        }`}
-        href="/cruduser"
-        onClick={() => setActiveMenu("datauser")}
-      >
-          <a className={`text-decoration-none text-white ${
-            activeMenu === "datauser" ? "text-dark" : "text-dark-hover"
-          }`} href="/cruduser">
-            DATA USER
-          </a>
-      </Nav.Link>
-    </li>
-    <li className={`nav-item ${activeMenu === "artikel" ? "active" : ""}`}>
-      <Nav.Link
-        className={`nav-link text-light d-none d-md-block ${
-          activeMenu === "artikel" ? "active-link" : ""
-        }`}
-        href="/artikel"
-        onClick={() => setActiveMenu("artikel")}
-      >
-          <a className={`text-decoration-none ${
-            activeMenu === "artikel" ? "text-dark" : "text-dark-hover"
-          }`} href="/artikel">
-            ARTICLES
-          </a>
-      </Nav.Link>
-    </li>
-    <li className="nav-item">
-      <Nav.Link
-        className="nav-link text-light d-none d-md-block"
-        onClick={handleLogout}
-      >
-        Logout
-      </Nav.Link>
-    </li>
-    </ul>
-    </div>
-    </nav>
+            <ul className="nav flex-column">
+              <li
+                className={`nav-item ${
+                  activeMenu === "datauser" ? "active" : ""
+                }`}
+              >
+                <a
+                  className={`nav-link text-dark ${
+                    activeMenu === "datauser" ? "active-link" : "/user"
+                  }`}
+                  href="/user"
+                  onClick={() => setActiveMenu("datauser")}
+                >
+                  DATA USER
+                </a>
+              </li>
+              <li
+                className={`nav-item ${
+                  activeMenu === "artikel" ? "active" : ""
+                }`}
+              >
+                <a
+                  className={`nav-link text-dark ${
+                    activeMenu === "artikel" ? "active-link" : "/artikel"
+                  }`}
+                  href="/artikel"
+                  onClick={() => setActiveMenu("artikel")}
+                >
+                  ARTICLE
+                </a>
+              </li>
+              <li
+                className={`nav-item ${
+                  activeMenu === "products" ? "active" : ""
+                }`}
+              >
+                <div
+                  className={`nav-link text-dark`}
+                  onClick={() => handleLogout()}
+                >
+                  Logout
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="pt-3 pb-2 mb-3">
             <h1>Kelola Artikel</h1>
