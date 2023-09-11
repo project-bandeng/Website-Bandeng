@@ -6,12 +6,15 @@ import axios from "../service/axios";
 import forgotIcon from "../Image/forgot.png";
 import Swal from "sweetalert2";
 
+import { Ring } from '@uiball/loaders';
+
 const ResetPassPage = () => {
     document.title = "Reset Password";
     const [password, setPassword] = useState("");
     const [conPassword, setConPassword] = useState("");
     const [params, setParams] = useSearchParams();
     const navigate = useNavigate();
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
         let tokenReqPassReset = params.get("token");
@@ -19,6 +22,7 @@ const ResetPassPage = () => {
     }, []);
 
     function handleRPass(token) {
+        setLoading(true);
         let tokenReqPassReset = params.get("token");
         let dataRpass = {
             resetPassToken: tokenReqPassReset,
@@ -29,10 +33,12 @@ const ResetPassPage = () => {
         axios
             .post("/api/v2/login/reset-password", dataRpass)
             .then(function (response) {
+                setLoading(false);
                 navigate("/login");
                 console.log(response);
             })
             .catch(function (error) {
+                setLoading(false);
                 if (error.response.status === 400) {
                     Swal.fire({
                         icon: "error",
@@ -86,7 +92,7 @@ const ResetPassPage = () => {
                                     style={{ width: "180px" }}
                                     onClick={handleRPass}
                                 >
-                                    Reset Password
+                                    {isLoading ? <Ring size={20} lineWeight={5} speed={2} color="black" /> : 'Reset Password'}
                                 </Button>
                             </Link>
                         </div>
