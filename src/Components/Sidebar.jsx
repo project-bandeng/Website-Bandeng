@@ -20,7 +20,7 @@ export default function Sidebar({ dataLink, handleLogout }) {
 
   return (
     <nav
-      className="col-md-2 d-none d-md-block sidebar rounded-4 pe-0 ps-4"
+      className="col-md-2 d-md-block sidebar rounded-end-4 pe-0 ps-4 min-vh-100"
       style={{ backgroundColor: "#0F75BD" }}
     >
       <div className="d-flex flex-column justify-content-between h-100">

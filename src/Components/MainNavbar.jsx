@@ -16,6 +16,8 @@ const MainNavbar = () => {
     "/user",
     "/artikel",
     "/login/admin",
+    "/login/forgot-password",
+    "/login/reset-password"
   ];
 
   const checkIsPathExcluded = () => {

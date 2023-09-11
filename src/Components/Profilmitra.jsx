@@ -144,9 +144,8 @@ const Profilmitra = () => {
   }, []);
 
   return (
-    <div className="container-news">
-      <div className="row">
-      <nav className="col-md-2 d-none d-md-block sidebar rounded-4 pe-0 ps-4" style={{ backgroundColor: '#0F75BD' }}>
+      <div className="d-flex">
+      <nav className="col-md-2 d-md-block sidebar rounded-end-4 pe-0 ps-4 min-vh-100" style={{ backgroundColor: '#0F75BD' }}>
           <div className="d-flex flex-column justify-content-between h-100">
           <div className="position-sticky">
             <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">Main Menu</h5>
@@ -258,7 +257,6 @@ const Profilmitra = () => {
           </div>
         </main>
       </div>
-    </div>
   );
 };
 export default Profilmitra;

@@ -77,12 +77,7 @@ const LoginAdminPage = () => {
                 className="rounded-pill mb-2 p-2 form-login"
               />
             </Form.Group>
-            <div className="d-flex justify-content-end mb-3 mx-2">
-              <Link to="/login/forgot-password" className="text-white">
-                Lupa Password?
-              </Link>
-            </div>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mt-5">
               <Link>
                 <Button
                   variant="light"
@@ -100,14 +95,6 @@ const LoginAdminPage = () => {
               </Link>
             </div>
           </Form>
-          <div className="mt-4 d-flex justify-content-center">
-            <p className="text-white">
-              Masih Belum Punya Akun?{" "}
-              <Link to="/register" className="text-white">
-                Sign Up
-              </Link>
-            </p>
-          </div>
         </div>
       </div>
     </div>

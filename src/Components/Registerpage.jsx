@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import "../App.css";
-import axios from "axios";
+import axios from "../service/axios";
 import "../register.css"
 
 const Registerpage = () => {
@@ -31,6 +31,11 @@ const Registerpage = () => {
         axios
             .post("/api/v1/register", dataRegister)
             .then(function (response) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Good job!",
+                    text: response.data,
+                });
                 navigate("/login");
             })
             .catch((error) => {

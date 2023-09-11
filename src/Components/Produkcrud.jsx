@@ -55,10 +55,11 @@ const Produkcrud = () => {
     axios
       .get(`/api/product/read-mitra/${id}`)
       .then((res) => {
+        res.data.data = JSON.parse(res.data.data);
         setStatusDataOrigin(0);
-        console.log(res);
-        setProductsPrev(res.data.products);
-        setProducts(res.data.products);
+        console.log(res.data.data);
+        setProductsPrev(res.data.data.products);
+        setProducts(res.data.data.products);
       })
       .catch((err) => {
         console.log(err);
@@ -255,9 +256,8 @@ const Produkcrud = () => {
   }, []);
 
   return (
-    <div className="container-news">
-      <div className="row" style={{ height: 'auto' }}>
-        <nav className="col-md-2 d-none d-md-block sidebar rounded-4 pe-0 ps-4" style={{ backgroundColor: '#0F75BD' }}>
+      <div className="d-flex">
+        <nav className="col-md-2 d-md-block sidebar rounded-end-4 pe-0 ps-4 min-vh-100" style={{ backgroundColor: '#0F75BD'}}>
           <div className="d-flex flex-column justify-content-between h-100">
           <div className="position-sticky">
             <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">Main Menu</h5>
@@ -265,13 +265,13 @@ const Produkcrud = () => {
               <li className={`nav-item ${activeMenu === 'profil' ? 'active' : ''}`}>
                 <a className={`nav-link text-white rounded-start-3 hovering-menu  ${activeMenu === 'profil' ? 'active-link' : '/profil'}`} href="/profil" onClick={() => setActiveMenu('profil')}>
                   <i class="bi bi-person-fill me-2"></i>
-                  PROFILE
+                  <span className='d-md-inline d-none'>PROFILE</span>
                 </a>
               </li>
               <li className={`nav-item rounded-start-3 ${activeMenu === 'products' ? 'active' : ''}`}>
                 <a className={`nav-link text-primary ${activeMenu === 'products' ? 'active-link' : '/products'}`} href="/crudproduk" onClick={() => setActiveMenu('products')}>
                   <i class="bi bi-bag-fill me-2"></i>
-                  PRODUCTS
+                  <span className='d-md-inline d-none'>PRODUCTS</span>
                 </a>
               </li>
             </ul>
@@ -279,14 +279,14 @@ const Produkcrud = () => {
           <div className="logout mt-auto mb-3">
               <Link className={`nav-link text-white nav-item px-3 py-2 hovering-menu rounded-start-3`} onClick={() => handleLogout()} style={{ cursor: 'pointer' }}>
                 <i class="bi bi-door-open-fill me-2"></i>
-                LOGOUT
+                <span className='d-md-inline d-none'>LOGOUT</span>
               </Link>
             </div>
           </div>
         </nav>
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="pt-3 pb-2 mb-3">
-            <h1>Produk</h1>
+            <h1>Kelola Produk</h1>
           </div>
           <div className="row">
             <div className="col-md-12">
@@ -408,7 +408,6 @@ const Produkcrud = () => {
           </div>
         </main>
       </div>
-    </div>
   );
 };
 
