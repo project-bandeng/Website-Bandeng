@@ -38,7 +38,7 @@ const Registerpage = () => {
         Swal.fire({
           icon: 'success',
           title: 'Good job!',
-          text: response.data,
+          text: response.data.data,
         });
         setLoading(false);
         navigate('/login');
@@ -46,12 +46,12 @@ const Registerpage = () => {
       .catch((error) => {
         console.log(error);
         setLoading(false);
-        if (error.response?.status === 400) {
+        if (error.response?.status === 500) {
           //TODO : Tmbahin handle error karena error tergantung sama field nya contoh errors:{email: ['kesalahan'], telp: ['ada'], dst...}
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Terjadi Kesalahan Lain.',
+            text: error.data.error,
           });
         }
       });

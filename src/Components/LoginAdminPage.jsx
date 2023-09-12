@@ -33,17 +33,24 @@ const LoginAdminPage = () => {
         localStorage.setItem("data-user", JSON.stringify(dataUser));
         localStorage.setItem("auth-token", token);
         console.log("Berhasil Login");
+        Swal.fire({
+          icon: 'success',
+          title: 'Good job!',
+          text: response.data.response,
+        });
         setLoading(false);
         navigate("/user");
       })
       .catch((error) => {
         console.log(error);
         setLoading(false);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Terjadi Kesalahan Lain.",
-        });
+        if(error.response.status === 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.data.error,
+          });
+        }
       });
   }
 

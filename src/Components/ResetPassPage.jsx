@@ -35,15 +35,19 @@ const ResetPassPage = () => {
             .then(function (response) {
                 setLoading(false);
                 navigate("/login");
-                console.log(response);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: response.data.response,
+                });
             })
             .catch(function (error) {
                 setLoading(false);
-                if (error.response.status === 400) {
+                if (error.response.status === 500) {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "Terjadi Kesalahan Lain.",
+                        text: error.data.error,
                     });
                 }
             });

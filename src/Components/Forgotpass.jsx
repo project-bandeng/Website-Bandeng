@@ -20,13 +20,18 @@ const Forgotpasspage = () => {
                 // localStorage.setItem('Forgot-Pass-info', JSON.stringify(dataFpass));
                 // navigate("/");
                 console.log(response);
+                Swal.fire({
+                    icon: "success",
+                    title: "Good job!",
+                    text: response.data.response,
+                });
             })
             .catch(function (error) {
                 if (error.response.status === 400) {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "Terjadi Kesalahan Lain.",
+                        text: error.data.error,
                     });
                 }
             });

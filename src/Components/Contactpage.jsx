@@ -24,18 +24,18 @@ const Contactpage = () => {
                     Swal.fire({
                         icon: "success",
                         title: "Good job!",
-                        text: "Terimakasih Telah Menghubungi Kami",
+                        text: response.data.response,
                     });
                 }
             })
             .catch((error) => {
                 console.log(error);
-                if (error.response?.status === 400) {
+                if (error.response?.status === 500) {
                     //TODO : Tmbahin handle error karena error tergantung sama field nya contoh errors:{email: ['kesalahan'], telp: ['ada'], dst...}
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "Terjadi Kesalahan Lain.",
+                        text: error.data.error,
                     });
                 }
             });
