@@ -2,14 +2,23 @@ import axios from '../../service/axios';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import '../../App.css';
+import { Ring } from '@uiball/loaders';
+
+const LoadingButton = () => {
+  return(
+    <Ring size={20} lineWeight={5} speed={2} color="white" />
+  )
+}
 
 export default function Contact() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [pesan, setPesan] = useState('');
   const [category, setCategory] = useState('Umum');
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleContact() {
+    setIsLoading(true)
     let dataContact = {
       nameCn: username,
       emailCn: email,
@@ -21,17 +30,20 @@ export default function Contact() {
       .post('/api/contact/kirim', dataContact)
       .then(function (response) {
         if (response.status === 200) {
+          setIsLoading(false)
           Swal.fire({
             icon: 'success',
             title: 'Good job!',
             text: 'Terimakasih Telah Menghubungi Kami',
           });
+          
         }
       })
       .catch((error) => {
         console.log(error);
         if (error.response?.status === 400) {
           //TODO : Tmbahin handle error karena error tergantung sama field nya contoh errors:{email: ['kesalahan'], telp: ['ada'], dst...}
+          setIsLoading(false)
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -88,7 +100,7 @@ export default function Contact() {
               <textarea className="form-control shadow" id="exampleFormControlTextarea1" rows="3" onChange={(e) => setPesan(e.target.value)} placeholder='Tuliskan Pesan Anda'></textarea>
             </div>
             <button onClick={handleContact} type="submit" className="btn btn-primary col-md-4 my-3 align-self-center">
-            Kirim Pesan
+            {isLoading ? <LoadingButton /> : "Kirim Pesan"}
             </button>
           </div>
         </div>

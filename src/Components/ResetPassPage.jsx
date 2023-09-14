@@ -5,6 +5,7 @@ import Logo from "../Image/LogoLogin.png";
 import axios from "../service/axios";
 import forgotIcon from "../Image/forgot.png";
 import Swal from "sweetalert2";
+import "../login.css"
 
 import { Ring } from '@uiball/loaders';
 
@@ -54,11 +55,11 @@ const ResetPassPage = () => {
     }
 
     return (
-        <div className="login-container d-flex">
-        <div className="login-content">
-          <div className="logo-container">
-            <img src={Logo} alt="Logo D'Bandeng" className="img-fluid" />
-          </div>
+        <div className="login-container">
+        <div className="login-content col-10 col-md-7">
+            <div className="logo-container">
+                <img src={Logo} alt="Logo D'Bandeng" className="img-fluid" />
+            </div>
                 <div className="form-container">
                     <img src={forgotIcon} alt="ForgotPass" className="forgot pb-4" />
                     <h1 className="h1 text-white fw-bolder text-center">
@@ -68,7 +69,7 @@ const ResetPassPage = () => {
                         Masukkan email yang anda daftarkan dan kami akan
                         mengirimkan instruksi untuk mengatur ulang kata sandi.
                     </p>
-                    <Form onSubmit={handleRPass} className="px-5">
+                    <Form onSubmit={handleRPass} className="">
                         <Form.Group controlId="formEmail">
                             <Form.Control
                                 type="password"

@@ -6,29 +6,33 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SearchBar from "./SearchBar";
 import useDataFilter from "../hooks/useDataFilter";
 import Sidebar from "./Sidebar";
+import Swal from "sweetalert2";
+import { Ring } from "@uiball/loaders";
 
 const dataLink = [
   { path: "/user", name: "Data User", icon: "bi-person-fill" },
   { path: "/artikel", name: "Artikel", icon: "bi-newspaper" },
 ];
 
+const LoadingDataComponent = ({columnSpan}) =>{
+  return(
+    <tr>
+      <td colspan={columnSpan} className="text-center py-5">
+        <Ring size={40} lineWeight={5} speed={2} color="black" />
+      </td>
+    </tr>
+  )
+}
+
+const LoadingButton = () => {
+  return(
+    <Ring size={20} lineWeight={5} speed={2} color="black" />
+  )
+}
+
 const Kelolauser = () => {
   document.title = "Kelola User";
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: "User A",
-      email: "usera@example.com",
-      no_tlp: "085156761382",
-    },
-    {
-      id: 2,
-      name: "User B",
-      email: "userb@example.com",
-      no_tlp: "085156761382",
-    },
-    // ... tambahkan lebih banyak data pengguna di sini jika diperlukan
-  ]);
+  const [users, setUsers] = useState([]);
   const [usersBackup, setUsersBackup] = useState([]);
   const [status, setStatus] = useState(0); //0 tambah data, 1 edit
   const [userSelected, setUserSelected] = useState(null);
@@ -38,6 +42,8 @@ const Kelolauser = () => {
   const [userAlamat, setUserAlamat] = useState("");
   const [editMode, setEditMode] = useState(false);
   const [activeMenu, setActiveMenu] = useState("datauser");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingActionButton, setIsLoadingActionButton] = useState(false); //untuk loading button saat tambah atau edit
   const [textSearch, setTextSearch] = useState("");
   const navigate = useNavigate();
   const searchData = useDataFilter();
@@ -50,11 +56,12 @@ const Kelolauser = () => {
         no_tlp: userNotlp,
         alamatMitra: userAlamat,
       };
+      
+      setIsLoadingActionButton(true)
 
       addNewUserAPI(newUser);
       // setUsers([...users, newUser]);
-      resetState();
-      setEditMode(false);
+      
     } else {
       alert("harus lengkap");
     }
@@ -89,10 +96,10 @@ const Kelolauser = () => {
         no_tlp: userNotlp,
         alamatMitra: userAlamat,
       };
+      
+      setIsLoadingActionButton(true)
 
       editUserAPI(data);
-      resetState();
-      setEditMode(false);
     } else {
       alert("harus lengkap");
     }
@@ -119,9 +126,28 @@ const Kelolauser = () => {
         console.log(res.data);
         setUsers([...users, res.data]);
         setUsersBackup([...usersBackup, res.data]);
+        
+        setIsLoadingActionButton(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Tambah User',
+          text: "Berhasil Tambah Data User",
+        }).then(()=>{
+          resetState();
+        setEditMode(false);
+        })
+        
+        
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Tambah Data User',
+          text: "Gagal Tambah",
+        });
+        setIsLoadingActionButton(false)
+        //setEditMode(false);
       });
   };
 
@@ -131,9 +157,24 @@ const Kelolauser = () => {
       .then((res) => {
         // console.log(res.data.response);
         updateDataInsideState(res.data.response);
+        setIsLoadingActionButton(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Edit User',
+          text: "Berhasil Edit Data User",
+        }).then(()=>{
+          resetState();
+          setEditMode(false);
+        })
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Update Data User',
+          text: "Gagal update",
+        });
+        setIsLoadingActionButton(false)
       });
   };
 
@@ -143,22 +184,34 @@ const Kelolauser = () => {
       .then((res) => {
         console.log(res);
         // updateDataInsideState(res.data.response);
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Hapus User',
+          text: "Berhasil Hapus Data User",
+        })
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Hapus User',
+          text: "Gagal Hapus Data User",
+        });
       });
   };
 
   const fetchDataUserAPI = () => {
+    setIsLoading(true)
     axios
       .get("/api/mitra/all/admin")
       .then((res) => {
         console.log(res.data.data);
         setUsers(res.data.data);
         setUsersBackup(res.data.data);
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false)
       });
   };
 
@@ -177,14 +230,24 @@ const Kelolauser = () => {
   };
 
   const handleSearch = (e) => {
+    setIsLoading(true)
     e.preventDefault();
     let filteredUser = searchData(usersBackup, textSearch, "namaMitra");
+    setIsLoading(false)
+    
+    if(filteredUser.length === 0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Tidak Ditemukan!',
+        text: "Data tidak ditemukan",
+      });
+    }
     setUsers(filteredUser);
   };
 
   useEffect(() => {
     fetchDataUserAPI();
-  }, []);
+  }, [editMode]);
 
   useEffect(() => {
     if (textSearch.length === 0 && usersBackup.length !== 0) {
@@ -267,7 +330,7 @@ const Kelolauser = () => {
                           status === 0 ? handleAddUser : handleUpdateUser
                         }
                       >
-                        Simpan Perubahan
+                        {isLoadingActionButton ? <LoadingButton/> : "Simpan Perubahan"}
                       </button>
                       <button
                         className="btn btn-secondary"
@@ -297,7 +360,7 @@ const Kelolauser = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {users.map((user) => (
+                          {isLoading ? <LoadingDataComponent columnSpan={4} /> : (users.map((user) => (
                             <tr key={user.id}>
                               <td>{user.namaMitra}</td>
                               <td>{user.email}</td>
@@ -320,7 +383,7 @@ const Kelolauser = () => {
                                 </button>
                               </td>
                             </tr>
-                          ))}
+                          ))) }
                         </tbody>
                       </table>
                       <div className="mb-3">

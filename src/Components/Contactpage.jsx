@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../service/axios";
 import Swal from "sweetalert2";
+
+import { Ring } from '@uiball/loaders';
+
+const LoadingButton = () => {
+  return(
+    <Ring size={20} lineWeight={5} speed={2} color="white" />
+  )
+}
 
 const Contactpage = () => {
     document.title = 'Contact Us';
@@ -8,8 +16,11 @@ const Contactpage = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [pesan, setPesan] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
 
-    function handleContact() {
+    function handleContact(e) {
+        e.preventDefault()
+        setIsLoading(true)
         let dataContact = {
             nameCn: username,
             emailCn: email,
@@ -20,6 +31,7 @@ const Contactpage = () => {
         axios
             .post("/api/contact/kirim", dataContact)
             .then(function (response) {
+                setIsLoading(false)
                 if (response.status === 200) {
                     Swal.fire({
                         icon: "success",
@@ -30,6 +42,7 @@ const Contactpage = () => {
             })
             .catch((error) => {
                 console.log(error);
+                setIsLoading(false)
                 if (error.response?.status === 500) {
                     //TODO : Tmbahin handle error karena error tergantung sama field nya contoh errors:{email: ['kesalahan'], telp: ['ada'], dst...}
                     Swal.fire({
@@ -101,7 +114,7 @@ const Contactpage = () => {
                     type="submit"
                     className="btn btn-primary mt-3"
                 >
-                    Kirim Pesan
+                    {isLoading ? <LoadingButton /> : "Kirim Pesan"}
                 </button>
             </form>
         </div>

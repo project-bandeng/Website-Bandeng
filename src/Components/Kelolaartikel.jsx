@@ -7,11 +7,28 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import useDataFilter from "../hooks/useDataFilter";
 import Sidebar from "./Sidebar";
+import { Ring } from "@uiball/loaders";
+import Swal from "sweetalert2";
 
 const dataLink = [
   { path: "/user", name: "Data User", icon: "bi-person-fill" },
   { path: "/artikel", name: "Artikel", icon: "bi-newspaper" },
 ];
+
+const LoadingDataComponent = ({columnSpan}) =>{
+  return(
+    <div className="w-100 mb-4 text-center">
+        <Ring size={40} lineWeight={5} speed={2} color="black" />
+
+    </div>
+  )
+}
+
+const LoadingButton = () => {
+  return(
+    <Ring size={20} lineWeight={5} speed={2} color="black" />
+  )
+}
 
 const Kelolaartikel = () => {
   document.title = "Kelola Artikel";
@@ -24,6 +41,8 @@ const Kelolaartikel = () => {
   const [newArticleDescription, setNewArticleDescription] = useState("");
   const [textSearch, setTextSearch] = useState("");
   const [activeMenu, setActiveMenu] = useState("artikel");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingActionButton, setIsLoadingActionButton] = useState(false); //untuk loading button saat tambah atau edit
   const convertImage = useBackendURLTranslator();
   const navigate = useNavigate();
   const searchData = useDataFilter();
@@ -35,12 +54,9 @@ const Kelolaartikel = () => {
         jdlArticle: newJudulArticle,
         isiArticle: newArticleDescription,
       };
+      setIsLoadingActionButton(true)
 
       addNewNewsAPI(newArticle);
-
-      // setArticles([...articles, newArticle]);
-      resetState();
-      setEditMode(false);
     }
   };
 
@@ -51,11 +67,8 @@ const Kelolaartikel = () => {
       jdlArticle: newJudulArticle,
       isiArticle: newArticleDescription,
     };
-
+    setIsLoadingActionButton(true)
     editNewsAPI(data);
-
-    resetState();
-    setEditMode(false);
   };
 
   const handleEditArticle = (article) => {
@@ -95,15 +108,23 @@ const Kelolaartikel = () => {
   };
 
   const fetchAllNews = () => {
+    setIsLoading(true)
     axios
       .get("/api/article/read-all/admin")
       .then((res) => {
         console.log(res);
         setArticles(res.data.data);
         setArticlesBackup(res.data.data);
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal fetch',
+          text: "Gagal fetch data artikel",
+        });
+        setIsLoading(false)
       });
   };
 
@@ -118,9 +139,19 @@ const Kelolaartikel = () => {
       .delete(`/api/article/delete/${id}`)
       .then((res) => {
         console.log(res);
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Hapus Data',
+          text: "Berhasil Hapus data artikel",
+        });
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Delete',
+          text: "Gagal delete data artikel",
+        });
       });
   };
 
@@ -142,9 +173,24 @@ const Kelolaartikel = () => {
         console.log(res);
         setArticles([...articles, res.data.response]);
         setArticlesBackup([...articlesBackup, res.data.response]);
+        setIsLoadingActionButton(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Tambah Artikel',
+          text: "Berhasil Tambah Data Artikel",
+        }).then(()=>{
+          resetState();
+          setEditMode(false);
+        })
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Tambah',
+          text: "Gagal Tambah Data Artikel",
+        });
+        setIsLoadingActionButton(false)
       });
   };
 
@@ -166,9 +212,24 @@ const Kelolaartikel = () => {
         console.log(res);
         // setArticles([...articles, res.data.response]);
         updateDataInsideState(res.data.response);
+        setIsLoadingActionButton(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Edit Artikel',
+          text: "Berhasil Edit Data Artikel",
+        }).then(()=>{
+          resetState();
+          setEditMode(false);
+        })
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Edit',
+          text: "Gagal Edit Data Artikel",
+        });
+        setIsLoadingActionButton(false)
       });
   };
 
@@ -202,7 +263,7 @@ const Kelolaartikel = () => {
 
   useEffect(() => {
     fetchAllNews();
-  }, []);
+  }, [editMode]);
 
   useEffect(() => {
     if (textSearch.length === 0 && articlesBackup.length !== 0) {
@@ -289,9 +350,7 @@ const Kelolaartikel = () => {
                               : handleAddArticle
                           }
                         >
-                          {selectedArticle
-                            ? "Simpan Perubahan"
-                            : "Simpan Artikel Baru"}
+                          {isLoadingActionButton ? <LoadingButton/> : "Simpan Arikel"}
                         </button>
                         <button
                           className="btn btn-secondary"
@@ -311,7 +370,7 @@ const Kelolaartikel = () => {
                         />
                       </div>
                         <div className="row">
-                          {articles.map((article, key) => (
+                          {isLoading ? <LoadingDataComponent/> : articles.map((article, key) => (
                             <div className="col-md-4 mb-4" key={key}>
                               <div className="card">
                                 <img

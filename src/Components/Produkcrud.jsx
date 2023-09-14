@@ -8,6 +8,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Produk from '../Image/Produk.jpg';
 import axios from '../service/axios';
 import useDataFilter from '../hooks/useDataFilter';
+import Swal from 'sweetalert2';
+import { Ring } from '@uiball/loaders';
+
+const LoadingDataComponent = ({columnSpan}) =>{
+  return(
+    <tr>
+      <td colspan={columnSpan} className="text-center py-5">
+        <Ring size={40} lineWeight={5} speed={2} color="black" />
+      </td>
+    </tr>
+  )
+}
+
+const LoadingButton = () => {
+  return(
+    <Ring size={20} lineWeight={5} speed={2} color="black" />
+  )
+}
 
 const Produkcrud = () => {
   document.title = "Kelola Produk";
@@ -31,6 +49,8 @@ const Produkcrud = () => {
   const [productsPrev, setProductsPrev] = useState([]);
   const [products, setProducts] = useState([]);
   const [textSearch, setTextSearch] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingActionButton, setIsLoadingActionButton] = useState(false); //untuk loading button saat tambah atau edit
 
   useEffect(() => {
     if (textSearch.length === 0 && productsPrev.length !== 0) {
@@ -52,17 +72,19 @@ const Produkcrud = () => {
   };
 
   const fetchDataProduk = (id) => {
+    setIsLoading(true)
     axios
       .get(`/api/product/read-mitra/${id}`)
       .then((res) => {
         res.data.data = JSON.parse(res.data.data);
         setStatusDataOrigin(0);
-        console.log(res.data.data);
         setProductsPrev(res.data.data.products);
         setProducts(res.data.data.products);
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false)
       });
   };
 
@@ -85,9 +107,26 @@ const Produkcrud = () => {
         // console.log(productRes);
         setProducts([...products, productRes]);
         // setProducts(res.data.products);
+        setIsLoadingActionButton(false)
+        // setProducts([...products, productRes]);
+        // setProducts(res.data.products);
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Tambah Produk',
+          text: "Berhasil Tambah Data Produk",
+        }).then(()=>{
+          resetInputState();
+          setEditMode(false);
+        })
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Tambah Data Produk',
+          text: "Gagal Tambah",
+        });
+        setIsLoadingActionButton(false)
       });
   };
 
@@ -97,13 +136,24 @@ const Produkcrud = () => {
       .then((res) => {
         console.log(res);
         // setProducts(res.data.products);
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Hapus Produk',
+          text: "Berhasil Hapus Data Produk",
+        })
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Hapus Produk',
+          text: "Gagal Hapus Data Produk",
+        });
       });
   };
 
   const editDataProduk = (id, data) => {
+    setIsLoadingActionButton(true)
     let formData = new FormData();
     let key = Object.keys(data);
     console.log(data);
@@ -122,13 +172,26 @@ const Produkcrud = () => {
         let productRes = JSON.parse(res.data.data);
         console.log(productRes);
         updateProductsState(productRes);
-
-        setEditMode(false);
+        setIsLoadingActionButton(false)
         // setProducts([...products, productRes]);
         // setProducts(res.data.products);
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil Edit Produk',
+          text: "Berhasil Edit Data Produk",
+        }).then(()=>{
+          resetInputState();
+          setEditMode(false);
+        })
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Update Data Produk',
+          text: "Gagal update",
+        });
+        setIsLoadingActionButton(false)
       });
   };
 
@@ -144,14 +207,13 @@ const Produkcrud = () => {
         dskProduk: productDesc,
         link: productLink,
       };
+      setIsLoadingActionButton(true)
       addDataProduct(newProduct, dataUser.id);
 
       // newProduct.localFoto = URL.createObjectURL(newProduct.foto_produk);
       // console.log(newProduct);
 
       // setProducts([...products, newProduct]);
-      resetInputState();
-      setEditMode(false);
     } else {
       console.log(productName && productPrice && productImage && productWeight);
     }
@@ -219,8 +281,6 @@ const Produkcrud = () => {
       }
 
       editDataProduk(productId, editProduk);
-
-      resetInputState();
     } else {
       alert('Hrap isi semua form');
     }
@@ -253,7 +313,7 @@ const Produkcrud = () => {
 
   useEffect(() => {
     fetchDataProduk(dataUser?.id);
-  }, []);
+  }, [editMode]);
 
   return (
       <div className="d-flex">
@@ -338,7 +398,7 @@ const Produkcrud = () => {
                         <textarea className="form-control" id="product-berat" value={productDesc} onChange={(e) => setProductDesc(e.target.value)} required />
                       </div>
                       <button className="btn btn-primary me-2" onClick={action === 'Tambah Produk' ? handleAddProduct : handleUpdateProduct}>
-                        Simpan Perubahan
+                        {isLoadingActionButton ? <LoadingButton/> : "Simpan Perubahan" }
                       </button>
                       <button className="btn btn-secondary" onClick={() => setEditMode(false)}>
                         Batal
@@ -361,7 +421,7 @@ const Produkcrud = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {products.map((product) => (
+                          {isLoading ? <LoadingDataComponent columnSpan={5}/> : products.map((product) => (
                             <tr key={product.id}>
                               <td>
                                 <img

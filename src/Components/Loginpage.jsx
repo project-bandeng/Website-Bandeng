@@ -39,7 +39,10 @@ const Loginpage = () => {
           text: response.data.response,
         });
         setLoading(false);
-        navigate("/Profil");
+        setTimeout(()=>{
+          navigate("/Profil");
+        },1000)
+        
       })
       .catch((error) => {
         console.log(error);

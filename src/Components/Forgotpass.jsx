@@ -5,7 +5,7 @@ import Logo from "../Image/LogoLogin.png";
 import axios from "../service/axios";
 import forgotIcon from "../Image/forgot.png";
 import Swal from "sweetalert2";
-import "../login.css";
+import "../login.css"
 
 const Forgotpasspage = () => {
     document.title = 'Forgot Password';
@@ -39,7 +39,7 @@ const Forgotpasspage = () => {
 
     return (
         <div className="login-container">
-        <div className="login-content">
+        <div className="login-content col-10 col-md-7">
           <div className="logo-container">
             <img src={Logo} alt="Logo D'Bandeng" className="img-fluid" />
           </div>
@@ -52,7 +52,7 @@ const Forgotpasspage = () => {
                         Masukkan email yang anda daftarkan dan kami akan
                         mengirimkan instruksi untuk mengatur ulang kata sandi.
                     </p>
-                    <Form onSubmit={handleFPass} className="px-5">
+                    <Form onSubmit={handleFPass} className="">
                         <Form.Group controlId="formEmail">
                             <Form.Control
                                 type="email"

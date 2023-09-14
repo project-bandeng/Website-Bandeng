@@ -111,7 +111,7 @@ const Profilmitra = () => {
     axios
       .get("/api/v2/logout-mitra")
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         localStorage.removeItem("data-user");
         localStorage.removeItem("auth-token");
         navigate("/login");
@@ -166,7 +166,7 @@ const Profilmitra = () => {
                     href="/profil"
                     onClick={() => setActiveMenu("profil")}
                   >
-                    <i class="bi bi-person-fill me-2"></i>
+                    <i className="bi bi-person-fill me-2"></i>
                     PROFILE
                   </a>
                 </li>
@@ -182,7 +182,7 @@ const Profilmitra = () => {
                     href="/crudproduk"
                     onClick={() => setActiveMenu("products")}
                   >
-                    <i class="bi bi-bag-fill me-2"></i>
+                    <i className="bi bi-bag-fill me-2"></i>
                     PRODUCTS
                   </a>
                 </li>
@@ -194,7 +194,7 @@ const Profilmitra = () => {
                 onClick={() => handleLogout()}
                 style={{ cursor: "pointer" }}
               >
-                <i class="bi bi-door-open-fill me-2"></i>
+                <i className="bi bi-door-open-fill me-2"></i>
                 LOGOUT
               </Link>
             </div>
