@@ -34,6 +34,7 @@ const Homepage = () => {
     axios
       .get(`/api/mitra/all`)
       .then((res) => {
+        console.log(res);
         setMitraDataLocal(res.data.data);
         setListMitra(res.data.data);
         setIsLoading(false);
