@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "../service/axios";
 import config from "../config";
+import Swal from "sweetalert2";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import useBackendURLTranslator from "../hooks/useBackendURLTranslator";
+import { Ring } from "@uiball/loaders";
 
 // TO DO :
 // TAMBAHIN LOADING
@@ -22,6 +24,7 @@ const Profilmitra = () => {
   const [file, setFile] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [activeMenu, setActiveMenu] = useState("profil");
+  const [isLoadingsavePhoto, setIsLoadingSavephoto] = useState(false);
   const navigate = useNavigate();
   const convertImage = useBackendURLTranslator();
 
@@ -30,12 +33,13 @@ const Profilmitra = () => {
   };
 
   const handleOnChangeFoto = (e) => {
-    console.log(e.target.files[0]);
-    if (e.target.files[0].size > 5024000) {
+    console.log(e.target.files);
+    if (e?.target.files[0]?.size > 5024000) {
       //TODO : GANTI PAKE SWEETALERT
       alert("File tidak boleh lebih besar dari 5MB!");
       return;
     }
+    setIsLoadingSavephoto(true);
     setFile(e.target.files[0]);
     setFotoMitra(URL.createObjectURL(e.target.files[0]));
   };
@@ -53,9 +57,13 @@ const Profilmitra = () => {
       })
       .then((res) => {
         console.log(res);
+        Swal.fire("Berhasil Disimpan!", "", "success");
+        setIsLoadingSavephoto(false);
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire("Gagal Disimpan!", "", "error");
+        setIsLoadingSavephoto(false);
       });
   };
 
@@ -122,6 +130,10 @@ const Profilmitra = () => {
   };
 
   useEffect(() => {
+    handleSavePhoto();
+  }, [file]);
+
+  useEffect(() => {
     if (!localStorage.getItem("auth-token")) {
       return navigate("/login");
     }
@@ -146,215 +158,220 @@ const Profilmitra = () => {
   }, []);
 
   return (
-      <div className="d-flex">
-      <nav className="col-md-2 d-md-block sidebar rounded-end-4 pe-0 ps-4 min-vh-100" style={{ backgroundColor: '#0F75BD' }}>
-          <div className="d-flex flex-column justify-content-between h-100">
-            <div className="position-sticky">
-              <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
-                Main Menu
-              </h5>
-              <ul className="nav flex-column gap-2">
-                <li
-                  className={`nav-item rounded-start-3 ${
-                    activeMenu === "profil" ? "active" : ""
-                  }`}
-                >
-                  <a
-                    className={`nav-link text-primary  ${
-                      activeMenu === "profil" ? "active-link" : "/profil"
-                    }`}
-                    href="/profil"
-                    onClick={() => setActiveMenu("profil")}
-                  >
-                    <i className="bi bi-person-fill me-2"></i>
-                    PROFILE
-                  </a>
-                </li>
-                <li
-                  className={`nav-item ${
-                    activeMenu === "products" ? "active" : ""
-                  }`}
-                >
-                  <a
-                    className={`nav-link text-white hovering-menu rounded-start-3 ${
-                      activeMenu === "products" ? "active-link" : "/crudproduk"
-                    }`}
-                    href="/crudproduk"
-                    onClick={() => setActiveMenu("products")}
-                  >
-                    <i className="bi bi-bag-fill me-2"></i>
-                    PRODUCTS
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="logout mt-auto mb-3">
-              <Link
-                className={`nav-link text-white nav-item px-3 py-2 hovering-menu rounded-start-3`}
-                onClick={() => handleLogout()}
-                style={{ cursor: "pointer" }}
+    <div className="d-flex">
+      <nav
+        className="col-md-2 d-md-block sidebar rounded-end-4 pe-0 ps-4 min-vh-100"
+        style={{ backgroundColor: "#0F75BD" }}
+      >
+        <div className="d-flex flex-column justify-content-between h-100">
+          <div className="position-sticky">
+            <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
+              Main Menu
+            </h5>
+            <ul className="nav flex-column gap-2">
+              <li
+                className={`nav-item rounded-start-3 ${
+                  activeMenu === "profil" ? "active" : ""
+                }`}
               >
-                <i className="bi bi-door-open-fill me-2"></i>
-                LOGOUT
-              </Link>
-            </div>
+                <a
+                  className={`nav-link text-primary  ${
+                    activeMenu === "profil" ? "active-link" : "/profil"
+                  }`}
+                  href="/profil"
+                  onClick={() => setActiveMenu("profil")}
+                >
+                  <i className="bi bi-person-fill me-2"></i>
+                  PROFILE
+                </a>
+              </li>
+              <li
+                className={`nav-item ${
+                  activeMenu === "products" ? "active" : ""
+                }`}
+              >
+                <a
+                  className={`nav-link text-white hovering-menu rounded-start-3 ${
+                    activeMenu === "products" ? "active-link" : "/crudproduk"
+                  }`}
+                  href="/crudproduk"
+                  onClick={() => setActiveMenu("products")}
+                >
+                  <i className="bi bi-bag-fill me-2"></i>
+                  PRODUCTS
+                </a>
+              </li>
+            </ul>
           </div>
-        </nav>
-        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div className="pt-3 pb-2 mb-3">
-            <h1>Profil Akun Anda</h1>
+          <div className="logout mt-auto mb-3">
+            <Link
+              className={`nav-link text-white nav-item px-3 py-2 hovering-menu rounded-start-3`}
+              onClick={() => handleLogout()}
+              style={{ cursor: "pointer" }}
+            >
+              <i className="bi bi-door-open-fill me-2"></i>
+              LOGOUT
+            </Link>
           </div>
-          <div className="row">
-            <div className="col-md-3">
-              <div className="card rounded-3">
-                <img
-                  src={fotoMitra}
-                  alt="Profil Pengguna"
-                  className="card-img-top"
-                />
-                <div className="card-body d-flex flex-column align-items-center">
-                  <label
-                    className="btn btn-primary me-2 mt-1"
-                    htmlFor="fotoprofil"
-                  >
-                    UBAH FOTO PROFIL
-                  </label>
-                  <input
-                    type="file"
-                    name="fotoprofil"
-                    id="fotoprofil"
-                    className="visually-hidden"
-                    accept="image/*"
-                    onChange={handleOnChangeFoto}
-                  />
-                  <button className="btn btn-primary me-2 mt-2">
-                    UBAH KATA SANDI
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-8">
-              <div className="card">
-                <div className="card-body shadow p-4 rounded-2">
-                  {editMode ? (
-                    <>
-                      <h5 className="card-title">Ubah Profil</h5>
-                      <div className="mb-3">
-                        <label htmlFor="name" className="form-label">
-                          Nama Pengguna
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="name"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="alamat" className="form-label">
-                          Alamat
-                        </label>
-                        <textarea
-                          className="form-control"
-                          id="alamat"
-                          rows="3"
-                          value={alamat}
-                          onChange={(e) => setAlamat(e.target.value)}
-                        ></textarea>
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="tgl_lahir" className="form-label">
-                          Tanggal Lahir
-                        </label>
-                        <input
-                          type="date"
-                          className="form-control"
-                          id="tgl_lahir"
-                          value={tgl_lahir}
-                          onChange={(e) => setTgl(e.target.value)}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="jenis_kel" className="form-label">
-                          Jenis Kelamin
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="jenis_kel"
-                          value={jenis_kel}
-                          onChange={(e) => setKelamin(e.target.value)}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="email" className="form-label">
-                          Email Pengguna
-                        </label>
-                        <input
-                          disabled
-                          type="text"
-                          className="form-control"
-                          id="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="no_hp" className="form-label">
-                          No. Handphone
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="no_hp"
-                          value={no_hp}
-                          onChange={(e) => setNomer(e.target.value)}
-                        />
-                      </div>
-                      <button
-                        className="btn btn-primary me-2"
-                        onClick={handleSave}
-                      >
-                        Simpan
-                      </button>
-                      <button
-                        className="btn btn-secondary"
-                        onClick={handleCancel}
-                      >
-                        Batal
-                      </button>
-                    </>
+        </div>
+      </nav>
+      <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div className="pt-3 pb-2 mb-3">
+          <h1>Profil Akun Anda</h1>
+        </div>
+        <div className="row">
+          <div className="col-md-3">
+            <div className="card rounded-3">
+              <img
+                src={fotoMitra}
+                alt="Profil Pengguna"
+                className="card-img-top"
+              />
+              <div className="card-body d-flex flex-column align-items-center">
+                <label
+                  className="btn btn-primary me-2 mt-1"
+                  htmlFor="fotoprofil"
+                >
+                  {isLoadingsavePhoto ? (
+                    <Ring size={20} lineWeight={5} speed={2} color="white" />
                   ) : (
-                    <div className="d-flex flex-column">
-                      <h5 className="card-title mt-2">Nama : {name}</h5>
-                      <h5 className="card-title pt-2">Alamat : {alamat}</h5>
-                      <h5 className="card-title pt-2">
-                        Tanggal Lahir : {tgl_lahir}
-                      </h5>
-                      <h5 className="card-title pt-2">
-                        Jenis Kelamin : {jenis_kel}
-                      </h5>
-                      <h5 className="card-title pt-2">
-                        Email Terkait : {email}
-                      </h5>
-                      <h5 className="card-title pt-2 ">
-                        No. Handphone : {no_hp}
-                      </h5>
-                      <button
-                        className="btn btn-primary mt-4 align-self-center"
-                        onClick={handleEdit}
-                      >
-                        Edit Profil
-                      </button>
-                    </div>
+                    "UBAH FOTO PROFIL"
                   )}
-                </div>
+                </label>
+                <input
+                  type="file"
+                  name="fotoprofil"
+                  id="fotoprofil"
+                  className="visually-hidden"
+                  accept="image/*"
+                  onChange={handleOnChangeFoto}
+                />
+                <button className="btn btn-primary me-2 mt-2">
+                  UBAH KATA SANDI
+                </button>
               </div>
             </div>
           </div>
-        </main>
-      </div>
+          <div className="col-md-8">
+            <div className="card">
+              <div className="card-body shadow p-4 rounded-2">
+                {editMode ? (
+                  <>
+                    <h5 className="card-title">Ubah Profil</h5>
+                    <div className="mb-3">
+                      <label htmlFor="name" className="form-label">
+                        Nama Pengguna
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="alamat" className="form-label">
+                        Alamat
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="alamat"
+                        rows="3"
+                        value={alamat}
+                        onChange={(e) => setAlamat(e.target.value)}
+                      ></textarea>
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="tgl_lahir" className="form-label">
+                        Tanggal Lahir
+                      </label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        id="tgl_lahir"
+                        value={tgl_lahir}
+                        onChange={(e) => setTgl(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="jenis_kel" className="form-label">
+                        Jenis Kelamin
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="jenis_kel"
+                        value={jenis_kel}
+                        onChange={(e) => setKelamin(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="email" className="form-label">
+                        Email Pengguna
+                      </label>
+                      <input
+                        disabled
+                        type="text"
+                        className="form-control"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="no_hp" className="form-label">
+                        No. Handphone
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="no_hp"
+                        value={no_hp}
+                        onChange={(e) => setNomer(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      className="btn btn-primary me-2"
+                      onClick={handleSave}
+                    >
+                      Simpan
+                    </button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={handleCancel}
+                    >
+                      Batal
+                    </button>
+                  </>
+                ) : (
+                  <div className="d-flex flex-column">
+                    <h5 className="card-title mt-2">Nama : {name}</h5>
+                    <h5 className="card-title pt-2">Alamat : {alamat}</h5>
+                    <h5 className="card-title pt-2">
+                      Tanggal Lahir : {tgl_lahir}
+                    </h5>
+                    <h5 className="card-title pt-2">
+                      Jenis Kelamin : {jenis_kel}
+                    </h5>
+                    <h5 className="card-title pt-2">Email Terkait : {email}</h5>
+                    <h5 className="card-title pt-2 ">
+                      No. Handphone : {no_hp}
+                    </h5>
+                    <button
+                      className="btn btn-primary mt-4 align-self-center"
+                      onClick={handleEdit}
+                    >
+                      Edit Profil
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 };
 export default Profilmitra;
