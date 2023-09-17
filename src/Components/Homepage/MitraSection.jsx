@@ -64,8 +64,8 @@ export default function MitraSection() {
   };
 
   function convertImageURL(url) {
-    const BACKEND_DOMAIN = config.BACKEND_URL;
-    let path = BACKEND_DOMAIN + url;
+    // const BACKEND_DOMAIN = config.BACKEND_URL;
+    let path = url;
     return path;
   }
 

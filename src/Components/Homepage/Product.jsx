@@ -178,7 +178,7 @@ export default function Product() {
             </div>
           </div>
           <div className="d-flex justify-content-center mt-5">
-            <Link to="/product">
+            <Link to="/productv2">
               <Button type="button">Lihat Selengkapnya</Button>
             </Link>
           </div>

@@ -37,8 +37,8 @@ const ResetPassPage = () => {
                 setLoading(false);
                 navigate("/login");
                 Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
+                    icon: "success",
+                    title: "Good Job",
                     text: response.data.response,
                 });
             })

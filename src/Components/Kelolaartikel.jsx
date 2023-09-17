@@ -248,7 +248,7 @@ const Kelolaartikel = () => {
         console.log(res);
         localStorage.removeItem("data-user");
         localStorage.removeItem("auth-token");
-        navigate("/login");
+        navigate("/login/admin");
       })
       .catch((err) => {
         console.log(err);
