@@ -6,6 +6,7 @@ import axios from "../service/axios";
 import forgotIcon from "../Image/forgot.png";
 import Swal from "sweetalert2";
 import "../login.css"
+import InputPasswordComponent from "./InputPasswordComponent";
 
 import { Ring } from '@uiball/loaders';
 
@@ -71,8 +72,7 @@ const ResetPassPage = () => {
                     </p>
                     <Form onSubmit={handleRPass} className="">
                         <Form.Group controlId="formEmail">
-                            <Form.Control
-                                type="password"
+                            <InputPasswordComponent
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -80,8 +80,7 @@ const ResetPassPage = () => {
                             />
                         </Form.Group>
                         <Form.Group controlId="formEmail">
-                            <Form.Control
-                                type="password"
+                            <InputPasswordComponent
                                 placeholder="Confirm Password"
                                 value={conPassword}
                                 onChange={(e) => setConPassword(e.target.value)}

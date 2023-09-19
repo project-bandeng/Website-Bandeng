@@ -15,6 +15,11 @@ import LoadingComponent from "./LoadingComponent";
 const NewsCard = ({ data }) => {
   document.title = "About Us";
   let imageConverter = useBackendURLTranslator();
+
+  //Untuk meringkas kalimat agar tidak overflow
+  let temp = data.isiArticle.split(" ")
+  data.isiArticle = temp.slice(0,8).join(" ") + "..."
+
   return (
     <div className="col-sm-4">
       <Link to={"/news"} style={{ textDecoration: "none" }}>
@@ -24,7 +29,7 @@ const NewsCard = ({ data }) => {
             src={imageConverter(data.foto_article)}
             style={{ minHeight: "15rem", objectFit: "cover" }}
           ></Card.Img>
-          <Card.Body className="shadow" style={{ height: "300px" }}>
+          <Card.Body className="shadow" style={{ height: "300px", overflow: "hidden" }}>
             <Card.Title>{data.jdlArticle}</Card.Title>
             <Card.Text>{data.isiArticle}</Card.Text>
           </Card.Body>

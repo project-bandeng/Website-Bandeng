@@ -63,8 +63,6 @@ export default function Contact() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7920.56619885069!2d110.39243363598925!3d-6.975887322638056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f4cb48ba9965%3A0x83ea7ca439df6149!2sKrobokan%2C%20Kec.%20Semarang%20Barat%2C%20Kota%20Semarang%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1693477235893!5m2!1sid!2sid"
               className="rounded maps-krobokan"
               title="Kelurahan Krobokan"
-              width="500"
-              height="450"
               allowfullscreen="true"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"

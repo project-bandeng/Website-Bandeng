@@ -6,6 +6,7 @@ import axios from "../service/axios";
 import Swal from "sweetalert2";
 import "../login.css";
 import { Ring } from "@uiball/loaders";
+import InputPasswordComponent from "./InputPasswordComponent";
 
 const LoginAdminPage = () => {
   document.title = "Login Admin";
@@ -76,8 +77,7 @@ const LoginAdminPage = () => {
             </Form.Group>
 
             <Form.Group controlId="formPassword">
-              <Form.Control
-                type="password"
+              <InputPasswordComponent
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

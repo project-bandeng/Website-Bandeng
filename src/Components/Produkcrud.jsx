@@ -428,8 +428,9 @@ const Produkcrud = () => {
                                   src={product?.foto_produk ? convertImage(product.foto_produk) : ''}
                                   alt={product.name}
                                   style={{
-                                    maxWidth: '100px',
-                                    maxHeight: '100px',
+                                    width: '100px',
+                                    height: '80px',
+                                    objectFit: "cover"
                                   }}
                                 />
                               </td>

@@ -1,3 +1,8 @@
+.maps-krobokan {
+  width: 500px;
+  height: 450px;
+}
+
 .circle-card-container {
   display: flex;
   justify-content: center;
@@ -417,6 +422,20 @@
   .benefit-desc-container {
     flex-direction: column;
   }  
+
+  .Maps{
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .maps-krobokan {
+    width: 80%;
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+  
 }
 
 /* Gaya untuk perubahan warna teks pada hover */
