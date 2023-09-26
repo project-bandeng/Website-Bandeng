@@ -17,8 +17,7 @@ import LoadingComponent from "./LoadingComponent";
 
 const ProductItem = ({ image, title, price, link }) => {
   function convertImageURL(url) {
-    const BACKEND_DOMAIN = config.BACKEND_URL;
-    let path = BACKEND_DOMAIN + url;
+    let path = url;
     return path;
   }
 
@@ -63,8 +62,7 @@ const Productpage = ({ id, name, description, price, imageUrl }) => {
   };
 
   function convertImageURL(url) {
-    const BACKEND_DOMAIN = config.BACKEND_URL;
-    let path = BACKEND_DOMAIN + url;
+    let path = url;
     return path;
   }
 
