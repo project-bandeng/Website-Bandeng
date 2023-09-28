@@ -27,6 +27,7 @@ import ResetPassPage from "./Components/ResetPassPage";
 import Kelolaartikel from "./Components/Kelolaartikel";
 import Kelolauser from "./Components/Kelolauser";
 import ProductPageV2 from "./Pages/ProductPageV2";
+import ProdukIOT from "./Pages/ProdukIOT";
 
 import MitraProdukContext from "./context/MitraProductContext";
 import User from "./Pages/User";
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/crudproduk" element={<Crudproduct />} />
           <Route path="/user" element={<User />} />
           <Route path="/artikel" element={<Artikel />} />
+          <Route path="/produkiot" element={<ProdukIOT />} />
         </Routes>
       </Router>
     </MitraProdukContext.Provider>
